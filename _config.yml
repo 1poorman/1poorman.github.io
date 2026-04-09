@@ -21,6 +21,7 @@ author: HuaC
 
 navbar-links:
   About Me: "aboutme"
+  文章目录: "archive"
   Resources:
     - Beautiful Jekyll: "https://beautifuljekyll.com"
     - Learn markdown: "https://www.markdowntutorial.com/"

@@ -1,0 +1,53 @@
+---
+layout: page
+title: 文章目录
+subtitle: 所有文章列表
+---
+
+<div class="archive-container">
+  {% assign posts = site.posts | sort: "date" | reverse %}
+  {% for post in posts %}
+  <div class="archive-item">
+    <span class="archive-date">{{ post.date | date: "%Y-%m-%d" }}</span>
+    <a href="{{ post.url | absolute_url }}" class="archive-title">{{ post.title }}</a>
+  </div>
+  {% endfor %}
+</div>
+
+<style>
+.archive-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.archive-item {
+  display: flex;
+  align-items: baseline;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #eee;
+  transition: all 0.3s ease;
+}
+
+.archive-item:hover {
+  padding-left: 10px;
+}
+
+.archive-date {
+  font-family: var(--header-font);
+  color: #999;
+  font-size: 0.9rem;
+  min-width: 100px;
+  flex-shrink: 0;
+}
+
+.archive-title {
+  color: var(--text-col);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.archive-title:hover {
+  color: #667eea;
+}
+</style>

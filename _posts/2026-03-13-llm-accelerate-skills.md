@@ -16,6 +16,7 @@ mathjax: true
 $$
 \text{head}_i = \text{Attention}(Q_i, K_i, V_i) = \text{softmax}\left(\frac{Q_i K_i^\top}{\sqrt{d_k}} + M\right) V_i
 $$
+
 如公式所示，每输出一个token，需要获得此刻及之前的K、V矩阵，与当前的Q矩阵点积。在所有的token输出前，K、V矩阵不断累积且可复用，将之缓存可省却大量的计算。
 Q则只有当前时刻有效，因此不必缓存。
 
@@ -72,7 +73,7 @@ Transformer中self-attention 的时间和内存复杂度是序列长度的二次
 | **v3** | 异步流水线 + FP8 块状量化 | 低精度数值稳定性与延迟隐藏 | Hopper (H100) |
 | **v4** | 多项式 Exp + 2CTA MMA + CuTe DSL | Shared Memory 带宽瓶颈与 SFU 算力瓶颈 | Blackwell (B200) |
 
-# FlashAttention 技术深度解析与演进 (截至 2026-03-17)
+# FlashAttention 技术深度解析与演进
 FlashAttention 是一种针对 Transformer 模型中注意力机制设计的**IO感知精确算法**，旨在解决传统注意力机制在处理长序列时存在的计算速度慢与内存占用高的问题。截至2026年3月17日，该技术已迭代至 FlashAttention-4 版本，针对最新的 GPU 架构进行了底层重构。
 ## 1. 核心原理与技术优势
 *   **IO 感知设计**：传统注意力计算需要频繁读写 GPU 高带宽内存（HBM），导致性能瓶颈。FlashAttention 通过**分块计算**，将计算任务分割，在 GPU 片上 SRAM（共享内存）中完成中间计算，大幅减少了对 HBM 的访问次数。

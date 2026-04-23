@@ -1,3 +1,24 @@
-{% if page.mathjax %}
+{% if page.mathjax or site.mathjax %}
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']]
+  },
+  startup: {
+    ready: () => {
+      MathJax.startup.defaultReady();
+      document.querySelectorAll('noscript').forEach(noscript => {
+        const math = noscript.textContent;
+        if (math.includes('\\') || math.includes('^') || math.includes('_')) {
+          const span = document.createElement('span');
+          span.innerHTML = math;
+          noscript.parentNode.replaceChild(span, noscript);
+        }
+      });
+    }
+  }
+};
+</script>
 <script type="text/javascript" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 {% endif %}

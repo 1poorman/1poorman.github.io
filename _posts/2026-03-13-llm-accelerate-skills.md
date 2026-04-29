@@ -75,10 +75,12 @@ Transformer中self-attention 的时间和内存复杂度是序列长度的二次
 
 # FlashAttention 技术深度解析与演进
 FlashAttention 是一种针对 Transformer 模型中注意力机制设计的**IO感知精确算法**，旨在解决传统注意力机制在处理长序列时存在的计算速度慢与内存占用高的问题。截至2026年3月17日，该技术已迭代至 FlashAttention-4 版本，针对最新的 GPU 架构进行了底层重构。
+
 ## 1. 核心原理与技术优势
 *   **IO 感知设计**：传统注意力计算需要频繁读写 GPU 高带宽内存（HBM），导致性能瓶颈。FlashAttention 通过**分块计算**，将计算任务分割，在 GPU 片上 SRAM（共享内存）中完成中间计算，大幅减少了对 HBM 的访问次数。
 *   **精确计算**：与稀疏或低秩近似方法不同，FlashAttention 在加速的同时保持数值精确，输出结果与标准注意力机制完全一致。
 *   **内存效率**：通过避免存储大型注意力矩阵，显著降低了内存复杂度，使模型能够处理更长的上下文序列（如 16K 至 64K tokens）。
+  
 ## 2. 版本演进与 FlashAttention-4 的重大更新
 随着硬件架构的演进，FlashAttention 持续优化，最新的 FlashAttention-4 针对 NVIDIA Blackwell 架构（B200/GB200）进行了彻底重构：
 *   **针对 Blackwell 架构优化**：针对新硬件中 Tensor Core 速度极快、但注意力前向传播瓶颈呈指数级增长、后向传播受限于共享内存带宽的不对称扩展问题，重新设计了算法流水线。
@@ -91,6 +93,7 @@ FlashAttention 是一种针对 Transformer 模型中注意力机制设计的**IO
 *   **生态集成与应用**：
     *   **FlexAttention 支持**：FlashAttention-4 已原生适配 PyTorch 的 FlexAttention API。研究人员可以通过几行 Python 代码实现自定义注意力变体（如 ALiBi、滑动窗口等），并由 FlashAttention 后端提供高性能加速支持。
     *   **开源现状**：FlashAttention-4 已于 2026 年 3 月 6 日正式开源，提供完整的算子实现与技术论文，广泛应用于大语言模型训练与推理部署中。
+  
 ## 3. 核心技术实现深度解析
 FlashAttention 的每一次迭代，本质上都是在解决**计算理论与硬件特性之间的错配**。从 v1 的 IO 感知到 v4 的指令级重构，其核心实现逻辑经历了深刻的变革。
 ### 3.1 FlashAttention-1：IO 感知与分块计算的奠基

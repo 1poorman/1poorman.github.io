@@ -84,30 +84,42 @@ body {
 }
 
 /* === 文章页三栏布局 === */
+
+/* 确保 body > main 撑满宽度 */
+body > main.post-layout-container {
+  width: 100%;
+  flex: 1;
+  box-sizing: border-box;
+}
+
 .post-layout-container {
   width: 100%;
-  max-width: 100%;
-  margin: 0 auto;
-  padding: 2rem 2rem;
+  padding: 2rem 3%;
   box-sizing: border-box;
 }
 
 .post-layout-row {
+  display: -webkit-flex;
   display: flex;
-  gap: 1.5rem;
+  -webkit-align-items: flex-start;
   align-items: flex-start;
   max-width: 1600px;
   margin: 0 auto;
+  gap: 0;
 }
 
 /* 左侧边栏 - 文章目录 */
 .post-sidebar-left-col {
   width: 15%;
-  min-width: 160px;
+  min-width: 150px;
   max-width: 220px;
-  flex-shrink: 0;
+  -webkit-flex: 0 0 auto;
+  flex: 0 0 auto;
+  position: -webkit-sticky;
   position: sticky;
   top: 80px;
+  padding-right: 1rem;
+  box-sizing: border-box;
 }
 
 /* 右侧边栏 - 本文目录 */
@@ -115,16 +127,22 @@ body {
   width: 15%;
   min-width: 140px;
   max-width: 200px;
-  flex-shrink: 0;
+  -webkit-flex: 0 0 auto;
+  flex: 0 0 auto;
+  position: -webkit-sticky;
   position: sticky;
   top: 80px;
+  padding-left: 1rem;
+  box-sizing: border-box;
 }
 
 /* 中间主内容 */
 .post-main-col {
-  flex: 1;
+  -webkit-flex: 1 1 0%;
+  flex: 1 1 0%;
   min-width: 0;
-  /* 内容区约占70%，两侧各约15% */
+  max-width: 900px;
+  box-sizing: border-box;
 }
 
 /* 侧边栏通用样式 */
@@ -301,15 +319,11 @@ body {
   .post-sidebar-left-col,
   .post-sidebar-right-col {
     min-width: 120px;
-    width: 13%;
-  }
-
-  .post-layout-row {
-    gap: 1rem;
+    width: 14%;
   }
 }
 
-/* === 响应式：小屏幕隐藏侧边栏 === */
+/* === 响应式：小屏幕隐藏侧边栏，内容居中 === */
 @media (max-width: 991.98px) {
   .post-layout-container {
     padding: 1.5rem 1rem;

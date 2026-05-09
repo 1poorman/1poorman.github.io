@@ -53,8 +53,10 @@ body {
   background-color: #f8f9fa;
 }
 
-.container {
+/* 首页文章列表容器限宽 */
+.posts-list {
   max-width: 900px;
+  margin: 0 auto;
 }
 
 .post-preview .post-meta {
@@ -83,22 +85,26 @@ body {
 
 /* === 文章页三栏布局 === */
 .post-layout-container {
-  max-width: 1400px;
+  width: 100%;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 2rem 1rem;
+  padding: 2rem 2rem;
+  box-sizing: border-box;
 }
 
 .post-layout-row {
   display: flex;
   gap: 1.5rem;
   align-items: flex-start;
+  max-width: 1600px;
+  margin: 0 auto;
 }
 
 /* 左侧边栏 - 文章目录 */
 .post-sidebar-left-col {
-  width: 18%;
-  min-width: 180px;
-  max-width: 240px;
+  width: 15%;
+  min-width: 160px;
+  max-width: 220px;
   flex-shrink: 0;
   position: sticky;
   top: 80px;
@@ -106,9 +112,9 @@ body {
 
 /* 右侧边栏 - 本文目录 */
 .post-sidebar-right-col {
-  width: 18%;
-  min-width: 160px;
-  max-width: 220px;
+  width: 15%;
+  min-width: 140px;
+  max-width: 200px;
   flex-shrink: 0;
   position: sticky;
   top: 80px;
@@ -118,7 +124,7 @@ body {
 .post-main-col {
   flex: 1;
   min-width: 0;
-  max-width: 860px;
+  /* 内容区约占70%，两侧各约15% */
 }
 
 /* 侧边栏通用样式 */
@@ -290,15 +296,29 @@ body {
   background: #bbb;
 }
 
+/* === 响应式：中等屏幕缩小侧边栏 === */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .post-sidebar-left-col,
+  .post-sidebar-right-col {
+    min-width: 120px;
+    width: 13%;
+  }
+
+  .post-layout-row {
+    gap: 1rem;
+  }
+}
+
 /* === 响应式：小屏幕隐藏侧边栏 === */
 @media (max-width: 991.98px) {
   .post-layout-container {
-    max-width: 900px;
     padding: 1.5rem 1rem;
   }
 
   .post-layout-row {
     display: block;
+    max-width: 900px;
+    margin: 0 auto;
   }
 
   .post-main-col {

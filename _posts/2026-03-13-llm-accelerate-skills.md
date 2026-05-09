@@ -6,6 +6,7 @@ cover-img: /assets/img/path.jpg
 thumbnail-img: /assets/img/thumb.png
 share-img: /assets/img/path.jpg
 tags: [books, test]
+category: AI大模型
 author: HuaC
 mathjax: true
 ---

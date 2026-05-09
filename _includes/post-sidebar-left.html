@@ -1,0 +1,23 @@
+<!-- Left Sidebar: All articles catalog grouped by category -->
+<aside class="sidebar-left">
+  <div class="sidebar-inner">
+    <h4 class="sidebar-heading">文章目录</h4>
+    {% assign categories = site.posts | map: "category" | compact | uniq | sort %}
+    {% for cat in categories %}
+      <div class="sidebar-category">
+        <div class="sidebar-category-title" data-category="{{ cat }}">
+          <i class="fas fa-folder"></i> {{ cat }}
+          <i class="fas fa-chevron-down sidebar-collapse-icon"></i>
+        </div>
+        <ul class="sidebar-category-list">
+          {% assign cat_posts = site.posts | where: "category", cat | sort: "date" | reverse %}
+          {% for post in cat_posts %}
+            <li class="sidebar-post-item {% if post.url == page.url %}active{% endif %}">
+              <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endfor %}
+  </div>
+</aside>

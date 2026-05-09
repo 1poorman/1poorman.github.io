@@ -80,3 +80,251 @@ body {
 .post-preview {
   margin-bottom: 1.5rem;
 }
+
+/* === 文章页三栏布局 === */
+.post-layout-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.post-layout-row {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+/* 左侧边栏 - 文章目录 */
+.post-sidebar-left-col {
+  width: 18%;
+  min-width: 180px;
+  max-width: 240px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 80px;
+}
+
+/* 右侧边栏 - 本文目录 */
+.post-sidebar-right-col {
+  width: 18%;
+  min-width: 160px;
+  max-width: 220px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 80px;
+}
+
+/* 中间主内容 */
+.post-main-col {
+  flex: 1;
+  min-width: 0;
+  max-width: 860px;
+}
+
+/* 侧边栏通用样式 */
+.sidebar-inner {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+}
+
+.sidebar-heading {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 0 0 0.75rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #667eea;
+  font-family: var(--header-font);
+}
+
+/* 左侧分类目录 */
+.sidebar-category {
+  margin-bottom: 0.5rem;
+}
+
+.sidebar-category-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #667eea;
+  padding: 6px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+  user-select: none;
+}
+
+.sidebar-category-title:hover {
+  background: #f0f0ff;
+}
+
+.sidebar-collapse-icon {
+  margin-left: auto;
+  font-size: 0.7rem;
+  transition: transform 0.2s;
+}
+
+.sidebar-category-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  transition: max-height 0.3s ease;
+  overflow: hidden;
+}
+
+.sidebar-category-list.collapsed {
+  max-height: 0 !important;
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar-post-item {
+  padding: 4px 8px 4px 24px;
+}
+
+.sidebar-post-item a {
+  font-size: 0.82rem;
+  color: #555;
+  text-decoration: none;
+  display: block;
+  line-height: 1.5;
+  transition: color 0.2s;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sidebar-post-item a:hover {
+  color: #667eea;
+}
+
+.sidebar-post-item.active a {
+  color: #667eea;
+  font-weight: 600;
+}
+
+.sidebar-post-item.active {
+  position: relative;
+}
+
+.sidebar-post-item.active::before {
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #667eea;
+}
+
+/* 右侧本文目录 */
+.toc-nav {
+  /* container */
+}
+
+.toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.toc-item {
+  padding: 3px 0;
+}
+
+.toc-item a {
+  font-size: 0.82rem;
+  color: #666;
+  text-decoration: none;
+  display: block;
+  line-height: 1.5;
+  transition: color 0.2s;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.toc-item a:hover {
+  color: #667eea;
+}
+
+.toc-item a.toc-active {
+  color: #667eea;
+  font-weight: 600;
+}
+
+.toc-h3 {
+  padding-left: 14px;
+}
+
+.toc-empty {
+  font-size: 0.85rem;
+  color: #999;
+  text-align: center;
+  margin: 1rem 0 0;
+}
+
+/* 侧边栏滚动条美化 */
+.sidebar-inner::-webkit-scrollbar {
+  width: 4px;
+}
+
+.sidebar-inner::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar-inner::-webkit-scrollbar-thumb {
+  background: #ddd;
+  border-radius: 2px;
+}
+
+.sidebar-inner::-webkit-scrollbar-thumb:hover {
+  background: #bbb;
+}
+
+/* === 响应式：小屏幕隐藏侧边栏 === */
+@media (max-width: 991.98px) {
+  .post-layout-container {
+    max-width: 900px;
+    padding: 1.5rem 1rem;
+  }
+
+  .post-layout-row {
+    display: block;
+  }
+
+  .post-main-col {
+    max-width: 100%;
+  }
+
+  .post-sidebar-left-col,
+  .post-sidebar-right-col {
+    display: none !important;
+  }
+}
+
+/* 文章内容区优化 */
+.post-main-col .blog-post {
+  background: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.post-main-col .blog-tags {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+}
+
+.post-main-col .pagination {
+  margin-top: 1.5rem;
+}

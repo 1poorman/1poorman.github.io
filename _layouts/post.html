@@ -4,9 +4,15 @@ layout: base
 
 {% include header.html type="post" %}
 
-<main class="{% if page.full-width %} container-fluid {% else %} container-md {% endif %}">
-  <div class="row">
-    <div class="{% if page.full-width %} col {% else %} col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 {% endif %}">
+<main class="post-layout-container">
+  <div class="post-layout-row">
+    <!-- Left Sidebar: All articles catalog -->
+    <div class="post-sidebar-left-col d-none d-lg-block">
+      {% include post-sidebar-left.html %}
+    </div>
+
+    <!-- Main Content -->
+    <div class="post-main-col">
 
       {% if page.gh-repo %}
         {% assign gh_split =  page.gh-repo | split:'/'  %}
@@ -84,5 +90,99 @@ layout: base
       </ul>
       {% include comments.html %}
     </div>
+
+    <!-- Right Sidebar: Current article TOC -->
+    <div class="post-sidebar-right-col d-none d-lg-block">
+      {% include post-sidebar-right.html %}
+    </div>
   </div>
 </main>
+
+<script>
+(function() {
+  // Auto-generate TOC from headings in .blog-post
+  var post = document.querySelector('.blog-post');
+  var tocNav = document.getElementById('toc-nav');
+  if (!post || !tocNav) return;
+
+  var headings = post.querySelectorAll('h2, h3');
+  if (headings.length === 0) {
+    tocNav.innerHTML = '<p class="toc-empty">无目录</p>';
+    return;
+  }
+
+  var ul = document.createElement('ul');
+  ul.className = 'toc-list';
+
+  headings.forEach(function(h) {
+    // Generate an ID if the heading doesn't have one
+    if (!h.id) {
+      h.id = h.textContent.trim()
+        .replace(/[^\w\u4e00-\u9fff]+/g, '-')
+        .replace(/^-+|-+$/g, '');
+    }
+
+    var li = document.createElement('li');
+    li.className = 'toc-item toc-' + h.tagName.toLowerCase();
+
+    var a = document.createElement('a');
+    a.href = '#' + h.id;
+    a.textContent = h.textContent.trim();
+    a.addEventListener('click', function(e) {
+      e.preventDefault();
+      var target = document.getElementById(h.id);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      // Update active state
+      tocNav.querySelectorAll('.toc-item a').forEach(function(link) { link.classList.remove('toc-active'); });
+      a.classList.add('toc-active');
+    });
+
+    li.appendChild(a);
+    ul.appendChild(li);
+  });
+
+  tocNav.appendChild(ul);
+
+  // Scroll spy: highlight current heading in TOC
+  var headingPositions = [];
+  function updatePositions() {
+    headingPositions = [];
+    headings.forEach(function(h) {
+      headingPositions.push({ id: h.id, top: h.getBoundingClientRect().top + window.pageYOffset });
+    });
+  }
+  updatePositions();
+
+  function onScroll() {
+    var scrollY = window.pageYOffset + 100;
+    var current = null;
+    for (var i = headingPositions.length - 1; i >= 0; i--) {
+      if (scrollY >= headingPositions[i].top) {
+        current = headingPositions[i].id;
+        break;
+      }
+    }
+    tocNav.querySelectorAll('.toc-item a').forEach(function(a) {
+      a.classList.toggle('toc-active', a.getAttribute('href') === '#' + current);
+    });
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', updatePositions, { passive: true });
+
+  // Category collapse toggle in left sidebar
+  document.querySelectorAll('.sidebar-category-title').forEach(function(title) {
+    title.addEventListener('click', function() {
+      var list = this.nextElementSibling;
+      var icon = this.querySelector('.sidebar-collapse-icon');
+      if (list) {
+        list.classList.toggle('collapsed');
+        icon.classList.toggle('fa-chevron-down');
+        icon.classList.toggle('fa-chevron-right');
+      }
+    });
+  });
+})();
+</script>

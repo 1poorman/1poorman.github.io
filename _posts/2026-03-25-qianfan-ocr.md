@@ -1,3 +1,12 @@
+---
+layout: post
+title: 千帆OCR试用
+subtitle: qianfan-ocr与minerU对比
+category: AI大模型
+tags: [ocr]
+author: HuaC
+---
+
 max_tokens = 16M
 显存占用11G左右
 

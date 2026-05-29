@@ -71,3 +71,7 @@ pipeline:
 ```
 bash bin/flink-cdc.sh mysql-to-doris.yaml
 ```
+
+## 三、常见问题
+
+### 1. 插件缺失或者版本不匹配

@@ -168,7 +168,7 @@ Apache Ranger是为Hadoop生态量身定制的集中式安全管理框架。其�
 
 ### 🔌 6. 数据服务出口：让数据资产API化
 统一对外提供数据服务，API网关是架构中的关键一环，负责安全、流控、协议转换等。
-
+![Crepe](/assets/img/APISIX.png)
 * APISIX：云原生的API管理
 APISIX是基于Nginx和Lua的高性能、动态API网关。其实现亮点在于：
 

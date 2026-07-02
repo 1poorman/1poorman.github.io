@@ -6,11 +6,14 @@ cover-img: /assets/img/Chronos-2-struct.png
 thumbnail-img: /assets/img/thumb.png
 share-img: /assets/img/Chronos-2-struct.png
 tags: [ts forecasting, chronos-2]
-category: agent
+category: 时间序列
 comments: true
 mathjax: true
 author: HuaC
 ---
+**关键词说明：**
+Future：未来的信息，一般是协变量的
+Robust Scale：归一化，正态化
 
 ## 一、结构分析
 
@@ -20,7 +23,8 @@ author: HuaC
 
 ### 1.2 模型特点
 
-- **Chronos-2** 是一个基于 Transformer 的时序预测模型，它结合了自回归 Transformer 和因果 Transformer 的优点，能够有效地处理长序列预测问题。
+- **Chronos-2** 是一个基于 Transformer 的时序预测模型，它结合了自回归 Transformer 和因果 Transformer 的优点，能够有效地处理长序列预测问题，不能处理异常检测任务。
+- 多变量协同
 
 ## 三、模型微调（Fine-Tuning）
 官方api提供的‘fit’支持两种模型：`"full"` or `"lora"`。
@@ -38,6 +42,8 @@ The `fit` method accepts:
 
 
 ### 3.1 全量调整（full fine-tuning）
+
+权重文件和预训练模型大小基本一致，约458M。
 
 示例：
 ~~~
@@ -63,3 +69,5 @@ The `fit` method accepts:
 ~~~
 
 ### 3.2 低秩调整LoRA
+
+仅训练adapter层，因此模型参数量比全量训练少很多，约4.5M。

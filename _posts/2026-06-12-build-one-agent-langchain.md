@@ -34,7 +34,9 @@ agent.invoke(
     {"messages": [{"role": "user", "content": "问题"}]}
 )
 ~~~
+
 其中`llm_model`为模型对象，`fun_tool`为工具函数。
+
 ~~~
 llm_model = "gpt-3.5-turbo" # 官方模型，key_api由环境变量提供
 #或者使用自定义模型（第三方提供商或者本地部署）
@@ -47,7 +49,8 @@ llm_model = ChatOpenAI(
     streaming=False,
 )
 ~~~
-注意，如果是本地部署模型，不要使用Xinference框架，工具调用会报错。
+
+注意，本地部署模型如果是Xinference框架，大概率不支持工具调用。
 
 ## 2. agent拓展
 ### 2.1 定义响应格式
@@ -67,9 +70,25 @@ class ResponseFormat:
 存储对话，用于上下文记忆。
 ~~~
 from langgraph.checkpoint.memory import InMemorySaver
-
+#临时存储，内存中，重启后消失
 checkpointer = InMemorySaver()
+
+agent = create_agent(
+    model=llm_model,  # 模型
+    tools=[fun_tool],
+    system_prompt="专属提示词",
+    checkpointer=checkpointer,
+)
 ~~~
+~~~
+#持久化存储，重启后不会消失，redis中
+from langgraph.checkpoint.memory import RedisSaver
+checkpointer = RedisSaver(redis_url="redis://localhost:6379")
+#或者使用文件存储
+from langgraph.checkpoint.memory import FileSaver
+checkpointer = FileSaver(file_path="/path/to/checkpoint.json")
+~~~
+
 ### 2.3 中间件middleware
 添加中间件，用于处理代理的输入和输出。例如动态选择模型：
 ~~~

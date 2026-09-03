@@ -17,6 +17,8 @@
     if (icon) {
       icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
     }
+    /* 通知其它模块（如文章页烟花背景）跟随主题启停 */
+    window.dispatchEvent(new CustomEvent('themechange', { detail: { theme: theme } }));
   }
 
   function initThemeToggle() {
@@ -174,6 +176,15 @@
     });
   }
 
+  /* ==================== 正文图片懒加载 ==================== */
+
+  function initLazyImages() {
+    document.querySelectorAll('.blog-post img, .post-entry img').forEach(function (img) {
+      if (!img.hasAttribute('loading')) img.setAttribute('loading', 'lazy');
+      if (!img.hasAttribute('decoding')) img.setAttribute('decoding', 'async');
+    });
+  }
+
   /* ==================== 启动 ==================== */
 
   function init() {
@@ -182,6 +193,7 @@
     initBackToTop();
     enhanceCodeBlocks();
     initFadeIn();
+    initLazyImages();
   }
 
   if (document.readyState === 'loading') {

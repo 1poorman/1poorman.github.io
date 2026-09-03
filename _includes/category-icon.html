@@ -1,0 +1,13 @@
+{% comment %}
+  分类 emoji 图标映射：传入 include.cat，输出对应 emoji
+{% endcomment %}
+{%- case include.cat -%}
+  {%- when "agent" %}🤖
+  {%- when "AI大模型" %}✨
+  {%- when "编程开发" %}💻
+  {%- when "开放词汇检测" %}🎯
+  {%- when "时间序列" %}📈
+  {%- when "数据中台" %}🏗️
+  {%- when "示例" %}🧪
+  {%- else %}📝
+{%- endcase -%}

@@ -6,7 +6,7 @@
     {% for cat in categories %}
       <div class="sidebar-category">
         <div class="sidebar-category-title" data-category="{{ cat }}">
-          <i class="fas fa-folder"></i> {{ cat }}
+          <span>{%- include category-icon.html cat=cat -%}</span> {{ cat }}
           <i class="fas fa-chevron-down sidebar-collapse-icon"></i>
         </div>
         <ul class="sidebar-category-list">

@@ -35,13 +35,13 @@
           
           {% if include.type == "post" %} 
             {% if page.author %}
-              By <strong>{{ page.author | strip_html }}</strong><br>
+              作者 <strong>{{ page.author | strip_html }}</strong><br>
             {% endif%}
-            <span class="post-meta">Posted on {{ page.date | date: date_format }}</span>
+            <span class="post-meta"><i class="far fa-calendar-alt"></i> 发布于 {{ page.date | date: date_format }}</span>
             {% if page.last-updated %}
               <span class="post-meta">
                 <span class="d-none d-md-inline middot">&middot;</span>
-                Last updated {{ page.last-updated | date: date_format }}
+                更新于 {{ page.last-updated | date: date_format }}
               </span>
             {% endif %}
             {% if page.readtime %}

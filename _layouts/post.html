@@ -54,7 +54,7 @@ layout: base
 
       {% if page.tags.size > 0 %}
         <div class="blog-tags">
-          <span>Tags:</span>
+          <span>标签：</span>
           {% for tag in page.tags %}
             <a href="{{ '/tags' | relative_url }}#{{- tag -}}">{{- tag -}}</a>
           {% endfor %}
@@ -73,20 +73,53 @@ layout: base
         {% include social-share.html %}
       {% endif %}
 
+      {% comment %}相关文章：同分类优先，不足时用最新文章补齐{% endcomment %}
+      {% assign related_list = "" | split: "" %}
+      {% for p in site.posts %}
+        {% if p.category == page.category and p.url != page.url %}
+          {% assign related_list = related_list | push: p %}
+        {% endif %}
+      {% endfor %}
+      {% assign related_list = related_list | slice: 0, 3 %}
+      {% if related_list.size == 0 %}
+        {% assign fallback_list = "" | split: "" %}
+        {% for p in site.posts %}
+          {% if p.url != page.url %}
+            {% assign fallback_list = fallback_list | push: p %}
+          {% endif %}
+        {% endfor %}
+        {% assign related_list = fallback_list | slice: 0, 3 %}
+      {% endif %}
+      {% if related_list.size > 0 %}
+      <div class="related-posts">
+        <h3 class="related-heading"><i class="fas fa-thumbtack"></i> 相关阅读</h3>
+        <ul>
+          {% for p in related_list %}
+          <li>
+            <a href="{{ p.url | relative_url }}">
+              <span class="related-date">{{ p.date | date: "%m-%d" }}</span>
+              <span>{{ p.title | strip_html }}</span>
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+
       <ul class="pagination blog-pager">
         {% if page.previous.url %}
         <li class="page-item previous">
           <a class="page-link" href="{{ page.previous.url | relative_url }}" data-toggle="tooltip" data-placement="top" title="{{page.previous.title | strip_html | xml_escape}}">
-            <i class="fas fa-arrow-left" alt="Previous Post"></i>
-            <span class="d-none d-sm-inline-block">Previous Post</span>
+            <i class="fas fa-arrow-left" alt="上一篇"></i>
+            <span class="d-none d-sm-inline-block">上一篇</span>
           </a>
         </li>
         {% endif %}
         {% if page.next.url %}
         <li class="page-item next">
           <a class="page-link" href="{{ page.next.url | relative_url }}" data-toggle="tooltip" data-placement="top" title="{{page.next.title | strip_html | xml_escape}}">
-            <span class="d-none d-sm-inline-block">Next Post</span>
-            <i class="fas fa-arrow-right" alt="Next Post"></i>
+            <span class="d-none d-sm-inline-block">下一篇</span>
+            <i class="fas fa-arrow-right" alt="下一篇"></i>
           </a>
         </li>
         {% endif %}
@@ -100,262 +133,3 @@ layout: base
     </div>
   </div>
 </main>
-
-<script>
-(function() {
-  // Auto-generate TOC from headings in .blog-post
-  var post = document.querySelector('.blog-post');
-  var tocNav = document.getElementById('toc-nav');
-  if (!post || !tocNav) return;
-
-  var headings = post.querySelectorAll('h2, h3');
-  if (headings.length === 0) {
-    tocNav.innerHTML = '<p class="toc-empty">无目录</p>';
-    return;
-  }
-
-  var ul = document.createElement('ul');
-  ul.className = 'toc-list';
-
-  headings.forEach(function(h) {
-    // Generate an ID if the heading doesn't have one
-    if (!h.id) {
-      h.id = h.textContent.trim()
-        .replace(/[^\w\u4e00-\u9fff]+/g, '-')
-        .replace(/^-+|-+$/g, '');
-    }
-
-    var li = document.createElement('li');
-    li.className = 'toc-item toc-' + h.tagName.toLowerCase();
-
-    var a = document.createElement('a');
-    a.href = '#' + h.id;
-    a.textContent = h.textContent.trim();
-    a.addEventListener('click', function(e) {
-      e.preventDefault();
-      var target = document.getElementById(h.id);
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-      // Update active state
-      tocNav.querySelectorAll('.toc-item a').forEach(function(link) { link.classList.remove('toc-active'); });
-      a.classList.add('toc-active');
-    });
-
-    li.appendChild(a);
-    ul.appendChild(li);
-  });
-
-  tocNav.appendChild(ul);
-
-  // Scroll spy: highlight current heading in TOC
-  var headingPositions = [];
-  function updatePositions() {
-    headingPositions = [];
-    headings.forEach(function(h) {
-      headingPositions.push({ id: h.id, top: h.getBoundingClientRect().top + window.pageYOffset });
-    });
-  }
-  updatePositions();
-
-  function onScroll() {
-    var scrollY = window.pageYOffset + 100;
-    var current = null;
-    for (var i = headingPositions.length - 1; i >= 0; i--) {
-      if (scrollY >= headingPositions[i].top) {
-        current = headingPositions[i].id;
-        break;
-      }
-    }
-    tocNav.querySelectorAll('.toc-item a').forEach(function(a) {
-      a.classList.toggle('toc-active', a.getAttribute('href') === '#' + current);
-    });
-  }
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', updatePositions, { passive: true });
-
-  // Category collapse toggle in left sidebar
-  document.querySelectorAll('.sidebar-category-title').forEach(function(title) {
-    title.addEventListener('click', function() {
-      var list = this.nextElementSibling;
-      var icon = this.querySelector('.sidebar-collapse-icon');
-      if (list) {
-        list.classList.toggle('collapsed');
-        icon.classList.toggle('fa-chevron-down');
-        icon.classList.toggle('fa-chevron-right');
-      }
-    });
-  });
-})();
-</script>
-
-<script>
-// Fireworks Background Animation
-(function() {
-  const canvas = document.getElementById('fireworks-bg');
-  if (!canvas) return;
-  
-  const ctx = canvas.getContext('2d');
-  
-  function resize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  resize();
-  window.addEventListener('resize', resize);
-  
-  const PALETTES = [
-    ['#ff6b6b','#ffd93d','#ff9f43','#ee5a24'],
-    ['#48dbfb','#00d2d3','#54a0ff','#5f27cd'],
-    ['#a29bfe','#fd79a8','#fdcb6e','#e17055'],
-    ['#55efc4','#00b894','#81ecec','#74b9ff'],
-    ['#ff9ff3','#ffeaa7','#dfe6e9','#b2bec3'],
-  ];
-  
-  class Particle {
-    constructor(x, y, vx, vy, color, life, size) {
-      this.x = x; this.y = y;
-      this.vx = vx; this.vy = vy;
-      this.color = color;
-      this.life = life;
-      this.maxLife = life;
-      this.size = size;
-      this.gravity = 0.06;
-      this.trail = [];
-    }
-    update() {
-      this.trail.push({x: this.x, y: this.y});
-      if (this.trail.length > 5) this.trail.shift();
-      this.vx *= 0.98;
-      this.vy *= 0.98;
-      this.vy += this.gravity;
-      this.x += this.vx;
-      this.y += this.vy;
-      this.life--;
-    }
-    draw(ctx) {
-      const alpha = this.life / this.maxLife;
-      for (let i = 0; i < this.trail.length; i++) {
-        const a = (i / this.trail.length) * alpha * 0.4;
-        ctx.beginPath();
-        ctx.arc(this.trail[i].x, this.trail[i].y, this.size * (i/this.trail.length), 0, Math.PI*2);
-        ctx.fillStyle = this.color + Math.floor(a*255).toString(16).padStart(2,'0');
-        ctx.fill();
-      }
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.size, 0, Math.PI*2);
-      ctx.fillStyle = this.color + Math.floor(alpha*255).toString(16).padStart(2,'0');
-      ctx.fill();
-    }
-    isDead() { return this.life <= 0; }
-  }
-  
-  class Rocket {
-    constructor(x, targetY) {
-      this.x = x;
-      this.y = canvas.height;
-      this.targetY = targetY;
-      this.vy = -12 - Math.random() * 5;
-      this.vx = (Math.random() - 0.5) * 2;
-      this.palette = PALETTES[Math.floor(Math.random() * PALETTES.length)];
-      this.trail = [];
-      this.exploded = false;
-    }
-    update() {
-      this.trail.push({x: this.x, y: this.y});
-      if (this.trail.length > 12) this.trail.shift();
-      this.vy += 0.25;
-      this.x += this.vx;
-      this.y += this.vy;
-      if (this.vy >= 0 || this.y <= this.targetY) {
-        this.exploded = true;
-      }
-    }
-    draw(ctx) {
-      for (let i = 0; i < this.trail.length; i++) {
-        const a = (i / this.trail.length) * 0.6;
-        ctx.beginPath();
-        ctx.arc(this.trail[i].x, this.trail[i].y, 2 * (i/this.trail.length), 0, Math.PI*2);
-        ctx.fillStyle = `rgba(255,240,180,${a})`;
-        ctx.fill();
-      }
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, 3, 0, Math.PI*2);
-      ctx.fillStyle = '#fff';
-      ctx.fill();
-    }
-    explode(particles) {
-      const count = 80 + Math.floor(Math.random() * 60);
-      const color = this.palette[Math.floor(Math.random() * this.palette.length)];
-      const color2 = this.palette[Math.floor(Math.random() * this.palette.length)];
-      const type = Math.floor(Math.random() * 3);
-  
-      for (let i = 0; i < count; i++) {
-        const angle = (i / count) * Math.PI * 2;
-        let speed, c;
-        if (type === 0) {
-          speed = 2 + Math.random() * 5;
-          c = Math.random() < 0.5 ? color : color2;
-        } else if (type === 1) {
-          const r = Math.random();
-          speed = r < 0.3 ? 1 + Math.random() * 2 : 3 + Math.random() * 6;
-          c = r < 0.3 ? '#ffffff' : color;
-        } else {
-          speed = 3 + Math.random() * 4 + Math.sin(angle * 5) * 2;
-          c = color;
-        }
-        const vx = Math.cos(angle) * speed * (0.8 + Math.random() * 0.4);
-        const vy = Math.sin(angle) * speed * (0.8 + Math.random() * 0.4);
-        particles.push(new Particle(this.x, this.y, vx, vy, c, 60 + Math.floor(Math.random() * 40), 1.5 + Math.random() * 2));
-      }
-      for (let i = 0; i < 8; i++) {
-        const angle = Math.random() * Math.PI * 2;
-        const speed = 1 + Math.random() * 3;
-        particles.push(new Particle(this.x, this.y, Math.cos(angle)*speed, Math.sin(angle)*speed - 2, '#ffe0a0', 90 + Math.floor(Math.random()*30), 2 + Math.random()));
-      }
-    }
-  }
-  
-  const particles = [];
-  const rockets = [];
-  let autoTimer = 0;
-  
-  function autoLaunch() {
-    const x = canvas.width * 0.15 + Math.random() * canvas.width * 0.7;
-    const targetY = canvas.height * 0.1 + Math.random() * canvas.height * 0.35;
-    rockets.push(new Rocket(x, targetY));
-  }
-  
-  function loop() {
-    ctx.fillStyle = 'rgba(6,6,15,0.18)';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-  
-    autoTimer++;
-    if (autoTimer > 90) {  // Reduced frequency for background
-      autoLaunch();
-      autoTimer = -Math.floor(Math.random() * 40);
-    }
-  
-    for (let i = rockets.length - 1; i >= 0; i--) {
-      rockets[i].update();
-      rockets[i].draw(ctx);
-      if (rockets[i].exploded) {
-        rockets[i].explode(particles);
-        rockets.splice(i, 1);
-      }
-    }
-  
-    for (let i = particles.length - 1; i >= 0; i--) {
-      particles[i].update();
-      particles[i].draw(ctx);
-      if (particles[i].isDead()) particles.splice(i, 1);
-    }
-  
-    requestAnimationFrame(loop);
-  }
-  
-  autoLaunch();
-  loop();
-})();
-</script>

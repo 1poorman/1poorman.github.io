@@ -20,9 +20,9 @@ author: HuaC
 ###############################################
 
 navbar-links:
-  About Me: "aboutme"
+  关于我: "aboutme"
   文章目录: "archive"
-  Resources:
+  资源链接:
     - Beautiful Jekyll: "https://beautifuljekyll.com"
     - Learn markdown: "https://www.markdowntutorial.com/"
   # Author's home: "https://deanattali.com"
@@ -139,15 +139,15 @@ keywords: "AI,大模型,大数据,数据分析,工程实践"
 
 page-col: "#FFFFFF"
 text-col: "#404040"
-link-col: "#008AFF"
-hover-col: "#0085A1"
+link-col: "#0d9488"
+hover-col: "#0284c7"
 navbar-col: "#EAEAEA"
 navbar-text-col: "#404040"
 navbar-border-col: "#DDDDDD"
 footer-col: "#EAEAEA"
 footer-text-col: "#777777"
 footer-link-col: "#404040"
-footer-hover-col: "#0085A1"
+footer-hover-col: "#0d9488"
 
 # Alternatively, the navbar, footer, and page background can be set to an image
 # instead of colour
@@ -157,7 +157,7 @@ footer-hover-col: "#0085A1"
 #page-img: "/assets/img/bgimage.png"
 
 # Suggest a colour for mobile browsers to use as the browser's theme. This is only supported by a few mobile browsers.
-mobile-theme-col: "#667eea"
+mobile-theme-col: "#2dd4bf"
 
 # For any extra visual customization, you can include additional CSS files in every page on your site. List any custom CSS files here
 site-css:
@@ -168,6 +168,8 @@ site-css:
 # If you have common JavaScript files that should be included in every page, list them here
 site-js:
   - "/assets/js/custom-script.js"
+  - "/assets/js/post-page.js"
+  - "/assets/js/fireworks.js"
 
 #################################
 # --- Web Analytics Section --- #
@@ -283,6 +285,7 @@ defaults:
       layout: "post"
       comments: true  # add comments to all blog posts
       social-share: true # add social media sharing buttons to all blog posts
+      readtime: true # show estimated reading time on all blog posts
       thumbnail-img: "/assets/img/default-cover.jpg"  # default cover; override it in any post's front matter
   -
     scope:

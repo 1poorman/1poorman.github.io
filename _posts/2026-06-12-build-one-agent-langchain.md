@@ -12,12 +12,14 @@ mathjax: true
 author: HuaC
 ---
 
+基于langchain框架开始搭建智能体，本文记录一些基本设置与注意事项。
 
 ## 1. 创建一个agent
+
 **示例：**
+
 ~~~
 from langchain.agents import create_agent
-
 
 def fun_tool(input: str) -> str:
     """一个简单的函数工具"""
@@ -67,7 +69,8 @@ class ResponseFormat:
     weather_conditions: str | None = None
 ~~~
 ### 2.2 添加记忆
-存储对话，用于上下文记忆。
+分为短期记忆（InMemorySaver）与长期记忆（RedisSaver），存储对话，用于上下文记忆。
+
 ~~~
 from langgraph.checkpoint.memory import InMemorySaver
 #临时存储，内存中，重启后消失
@@ -80,8 +83,9 @@ agent = create_agent(
     checkpointer=checkpointer,
 )
 ~~~
+
 ~~~
-#持久化存储，重启后不会消失，redis中
+#持久化存储，重启后不会消失，如存储至redis数据库中
 from langgraph.checkpoint.memory import RedisSaver
 checkpointer = RedisSaver(redis_url="redis://localhost:6379")
 #或者使用文件存储
@@ -90,6 +94,7 @@ checkpointer = FileSaver(file_path="/path/to/checkpoint.json")
 ~~~
 
 ### 2.3 中间件middleware
+
 添加中间件，用于处理代理的输入和输出。例如动态选择模型：
 ~~~
 from langchain_openai import ChatOpenAI
@@ -222,6 +227,19 @@ def fun_tool(input: str) -> str:
 ~~~
 
 **要点**：工具失败时返回错误描述字符串（而不是抛出异常），让agent自己决定下一步，避免任务直接崩溃。
+
+其他常见场景（工具相关）：
+
+| 问题 | 典型表现 | 对策 |
+| :--- | :--- | :--- |
+| 工具选择错误 | 工具名和描述相近，容易混淆 | 工具名+描述+示例，描述里写清「何时用 / 何时不用」 |
+| 调用工具输入参数错误 | 输入数据类型不对、必填参数缺失 | 定义工具时指定输入参数类型（Pydantic / `args_schema`），并在描述中给示例 |
+| 工具返回内容过大 | 一次返回几千行，直接撑爆上下文 | 工具内部做裁剪/分页，只回传关键字段；或写入文件后返回路径 |
+| 返回解析失败	| 返回空数组仍被引用、字段缺失被当作完整数据、结构变了开始编造	| 契约校验、错误分类 |
+| 工具副作用重复执行 | 重试时重复下单、重复写库 | 工具做成幂等的，传入 `request_id` 去重 |
+| 工具调用幻觉 | 模型编造不存在的工具名或参数 | 减少同时挂载的工具数量（建议 ≤ 10），按场景动态筛选工具 |
+| 敏感操作无管控 | 自动删库、自动转账 | 危险工具加人工审批（`interrupt_before=["tools"]`），或中间件拦截 |
+
 
 ### 3.4 状态丢失与持久化
 

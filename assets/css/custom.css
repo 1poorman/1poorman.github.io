@@ -1328,3 +1328,202 @@ html[data-theme="dark"] .panel {
   background-color: var(--bg-card);
   border-color: var(--border-soft);
 }
+
+/* ============================================================
+   14. 首页开源项目展示
+============================================================ */
+.projects-section {
+  max-width: 960px;
+  margin: 0 auto 2.5rem;
+}
+
+.projects-header {
+  margin-bottom: 1.5rem;
+}
+
+.projects-heading {
+  font-family: var(--header-font);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: transparent;
+  background: var(--brand-gradient-strong);
+  -webkit-background-clip: text;
+  background-clip: text;
+  margin: 0 0 0.4rem;
+  display: inline-block;
+  position: relative;
+}
+
+.projects-heading::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--brand-gradient);
+}
+
+.projects-subheading {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin: 0.9rem 0 0;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.75rem;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  background:
+    linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
+    linear-gradient(135deg, var(--border-soft), var(--border-soft)) border-box;
+  border: 2px solid transparent;
+  border-radius: var(--radius);
+  padding: 1.25rem 1.35rem;
+  text-decoration: none;
+  color: var(--text-main);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  text-decoration: none;
+  background:
+    linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
+    var(--brand-gradient) border-box;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--brand-gradient);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.project-card:hover::before {
+  opacity: 1;
+}
+
+.project-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.8rem;
+}
+
+.project-card-tag {
+  border-radius: 999px;
+  padding: 2px 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-family: var(--header-font);
+}
+
+.project-card-tag.tag-c0 { background: #dcf7f0; color: #0f766e; }
+.project-card-tag.tag-c1 { background: #e3f2fd; color: #0369a1; }
+.project-card-tag.tag-c2 { background: #fff4d6; color: #a16207; }
+.project-card-tag.tag-c3 { background: #f0eaff; color: #6d5bd0; }
+
+html[data-theme="dark"] .project-card-tag.tag-c0 { background: rgba(45, 212, 191, 0.16); color: #5eead4; }
+html[data-theme="dark"] .project-card-tag.tag-c1 { background: rgba(56, 189, 248, 0.16); color: #7dd3fc; }
+html[data-theme="dark"] .project-card-tag.tag-c2 { background: rgba(255, 183, 3, 0.16); color: #fcd34d; }
+html[data-theme="dark"] .project-card-tag.tag-c3 { background: rgba(184, 165, 255, 0.16); color: #c4b5fd; }
+
+.project-card-icon {
+  color: var(--text-muted);
+  font-size: 1.2rem;
+  transition: color 0.25s ease;
+}
+
+.project-card:hover .project-card-icon {
+  color: var(--brand);
+}
+
+.project-card-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 0 0 0.55rem;
+  font-family: var(--mono-font);
+  transition: color 0.25s ease;
+}
+
+.project-card:hover .project-card-title {
+  color: var(--brand);
+}
+
+html[data-theme="dark"] .project-card:hover .project-card-title {
+  color: var(--brand-light);
+}
+
+.project-card-desc {
+  flex: 1;
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+  margin: 0 0 1rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.project-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  padding-top: 0.75rem;
+  border-top: 1px dashed var(--border-soft);
+}
+
+.lang-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.lang-dot.lang-python {
+  background: #3572A5;
+}
+
+.project-card-updated {
+  margin-left: auto;
+}
+
+.projects-more {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin: 1.5rem 0 0;
+}
+
+.projects-more a {
+  color: var(--brand);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px dashed var(--brand-light);
+  transition: color 0.25s ease;
+}
+
+.projects-more a:hover {
+  color: var(--brand-2);
+}

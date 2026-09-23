@@ -3,7 +3,7 @@ layout: post
 title: Build un custom MCP   
 subtitle: 本地项目构建为MCP，并配置到智能体中
 tags: [ts forecasting, chronos-2]
-category: 时间序列
+category: agent
 comments: true
 mathjax: true
 author: HuaC

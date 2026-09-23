@@ -6,7 +6,7 @@ cover-img: /assets/img/path.jpg
 thumbnail-img: /assets/img/thumb.png
 share-img: /assets/img/path.jpg
 tags: [skill, AI, 教程]
-category: AI大模型
+category: agent
 comments: true
 mathjax: true
 author: HuaC

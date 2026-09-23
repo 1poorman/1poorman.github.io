@@ -6,7 +6,7 @@ cover-img: /assets/img/Chronos-2-struct.png
 thumbnail-img: /assets/img/thumb.png
 share-img: /assets/img/Chronos-2-struct.png
 tags: [ts anomaly]
-category: agent
+category: Time Series 
 comments: true
 mathjax: true
 author: HuaC

@@ -14,6 +14,8 @@ jobs:
       - name: Setup Pages
         id: configure-pages
         uses: actions/configure-pages@v5
+      - name: Validate content metadata
+        run: bundle exec ruby scripts/check-content.rb
       - name: Setup CI config
         run: |
           echo "---" > _config_ci.yml
@@ -21,6 +23,10 @@ jobs:
       - name: Build site
         env:
           JEKYLL_ENV: production
-        run: bundle exec appraisal jekyll build --future --config _config_ci.yml,_config.yml
+        run: bundle exec appraisal jekyll build --future --strict_front_matter --config _config.yml,_config_ci.yml
+      - name: Validate generated navigation and metadata
+        env:
+          LAB_BASE_PATH: ${{ steps.configure-pages.outputs.base_path }}
+        run: python3 scripts/check-output.py _site "$LAB_BASE_PATH"
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

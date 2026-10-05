@@ -1,0 +1,14 @@
+{
+  "name": "huac-lab",
+  "private": true,
+  "scripts": {
+    "test:desktop": "playwright test",
+    "preview:capture": "node scripts/capture-desktop.cjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

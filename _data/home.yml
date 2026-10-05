@@ -1,0 +1,19 @@
+featured:
+  post_path: _posts/2026-09-23-timeseries-anomaly-model-benchmark.md
+  number: "01"
+  title: 多变量输入，总能让预测更准确吗？
+  description: 从 GRU 到 PatchTST、Chronos，比较预测精度、泛化表现与推理成本。辅助通道是否有用，取决于模型如何使用它们。
+  context: 物理仿真数据 · 单卡 RTX 3090 · 600s 预测
+  comparison:
+    title: GRU 的跨文件泛化表现
+    metric: MAPE
+    unit: "%"
+    direction: 越低越好
+    maximum: 10
+    source: 原文 §6.1 · 跨文件正常段
+    source_anchor: 61-预测轨devicecuda1含单变量-vs-多变量对比
+    rows:
+      - label: 单变量
+        value: 8.64
+      - label: 多变量 · 6 通道
+        value: 4.44

@@ -1,0 +1,46 @@
+- id: mff-agent
+  name: 多参数融合预警智能体
+  repository: Agent_MFF_Early_Warning
+  url: https://github.com/1poorman/Agent_MFF_Early_Warning
+  description: 面向中频炉水冷系统，连接规则预警、时序预测与大模型根因诊断。
+  language: Python
+  label: 时序 × Agent
+  topics: [time-series, agents]
+  icon: waveform
+  related_posts:
+    - _posts/2026-09-23-timeseries-anomaly-model-benchmark.md
+    - _posts/2026-06-25-chronos-2-learning.md
+- id: photo-sorting
+  name: 剧照智能整理
+  repository: Theatrical_photo_sorting
+  url: https://github.com/1poorman/Theatrical_photo_sorting
+  description: 将人脸识别、实例分割与相似检索接入剧照整理，探索图像模型的实际用途。
+  language: Python
+  label: 计算机视觉
+  topics: [models-vision]
+  icon: aperture
+  related_posts:
+    - _posts/2026-07-23-open-world-models.md
+- id: build-agent
+  name: Agent 场景实践
+  repository: Build_agent
+  url: https://github.com/1poorman/Build_agent
+  description: 基于 LangChain 与 LangGraph，探索 RAG、研究助手、SQL 和数据分析场景。
+  language: Python
+  label: 智能体开发
+  topics: [agents]
+  icon: nodes
+  related_posts:
+    - _posts/2026-06-12-build-one-agent-langchain.md
+    - _posts/2026-07-02-Build-a-MCP.md
+- id: gbadmask
+  name: 小样本病害分割
+  repository: GBADMask
+  url: https://github.com/1poorman/GBADMask
+  description: 围绕农作物病害实例分割，研究轻量化骨干、掩码生成与可归因消融。
+  language: Python
+  label: 实例分割
+  topics: [models-vision]
+  icon: layers
+  related_posts:
+    - _posts/2026-04-29-SAM.md

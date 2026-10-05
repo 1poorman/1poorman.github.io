@@ -5,11 +5,14 @@ subtitle: 与minerU的比较
 cover-img: /assets/img/path.jpg
 thumbnail-img: /assets/img/thumb.png
 share-img: /assets/img/path.jpg
-tags: [books, test]
-category: AI大模型
+tags: ["OCR", "DeepSeek-OCR", "MinerU"]
+category: 模型与视觉
 comments: true
 mathjax: true
 author: HuaC
+kind: experiment
+topics: [models-vision]
+summary: 记录 DeepSeek-OCR-2 的显存分配、提示词与输出格式，并对照 MinerU 的使用方式。
 ---
 
 ## 显存占用

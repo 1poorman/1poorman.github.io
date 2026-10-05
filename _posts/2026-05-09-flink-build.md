@@ -5,11 +5,14 @@ subtitle: 部署细节与使用案例
 cover-img: /assets/img/path.jpg
 thumbnail-img: /assets/img/thumb.png
 share-img: /assets/img/path.jpg
-tags: [data middle platform]
-category: 数据中台
+tags: ["Flink", "CDC", "MySQL", "Doris"]
+category: 数据系统
 author: HuaC
 mathjax: true
 comments: true
+kind: engineering
+topics: [data-systems]
+summary: 记录 Flink 集群与 CDC 服务的部署过程，以 MySQL 到 Doris 的数据同步为例整理配置和常见问题。
 ---
 
 

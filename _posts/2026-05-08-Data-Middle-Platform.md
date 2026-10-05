@@ -5,11 +5,14 @@ subtitle: 开源框架落地细节
 cover-img: /assets/img/path.jpg
 thumbnail-img: /assets/img/thumb.png
 share-img: /assets/img/path.jpg
-tags: [data middle platform]
-category: 数据中台
+tags: ["数据中台", "湖仓", "Flink", "Doris"]
+category: 数据系统
 author: HuaC
 mathjax: true
 comments: true
+kind: analysis
+topics: [data-systems]
+summary: 沿着采集、存储、计算、治理和服务链路，梳理数据中台的开源技术栈及落地细节。
 ---
 
 
@@ -192,4 +195,3 @@ Apache Superset是一款开源的数据可视化与自助分析平台。其架�
 * 联邦查询与鉴权：Trino通过其Hudi Connector直接查询数据湖中的订单宽表数据，在执行前，Trino的Ranger插件会校验该运营人员是否拥有查看订单数据的权限。
 
 * 结果返回：鉴权通过后，Trino将查询结果快速返回给Superset，大屏上展示出实时的订单金额、销量等关键指标。整个过程，所有数据任务的执行均由DolphinScheduler统一调度，元数据和血缘信息则在DataHub上清晰可见。
-

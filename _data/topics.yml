@@ -1,0 +1,30 @@
+- id: time-series
+  name: 时序建模
+  code: TIME SERIES
+  description: 从预测到异常检测，记录模型在不同工况下的表现与取舍。
+  question: 精度、泛化与部署成本，如何取得平衡？
+  icon: waveform
+- id: models-vision
+  name: 模型与视觉
+  code: MODELS & VISION
+  description: 拆解模型架构与关键机制，探索 OCR、分割和开放词汇识别。
+  question: 模型的能力，来自怎样的结构设计？
+  icon: aperture
+- id: agents
+  name: Agent 工程
+  code: AGENT ENGINEERING
+  description: 连接模型、工具与上下文，把一个想法变成可用的智能体。
+  question: 怎样让工具调用和多步任务稳定运行？
+  icon: nodes
+- id: data-systems
+  name: 数据系统
+  code: DATA SYSTEMS
+  description: 记录数据采集、流处理与服务化中的架构选择和落地细节。
+  question: 数据如何从源头可靠地流向应用？
+  icon: layers
+- id: engineering
+  name: 开发实践
+  code: ENGINEERING NOTES
+  description: 用小而具体的实践，积累测试、调试与日常开发的方法。
+  question: 如何让实现更容易验证和维护？
+  icon: code

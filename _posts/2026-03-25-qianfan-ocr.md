@@ -2,9 +2,12 @@
 layout: post
 title: 千帆OCR试用
 subtitle: 端到端OCR vs 模块化解析，qianfan-ocr与MinerU、DeepSeek-OCR、PP-ChatOCRv4对比
-category: AI大模型
-tags: [ocr, 大模型, 文档解析]
+category: 模型与视觉
+tags: ["OCR", "文档解析", "MinerU"]
 author: HuaC
+kind: analysis
+topics: [models-vision]
+summary: 比较千帆 OCR、MinerU、DeepSeek-OCR 与 PP-ChatOCRv4 的架构路线，整理文档解析的选型与部署要点。
 ---
 
 > 本文从**技术原理、主流方案选型、部署实践**三个层面，记录千帆 OCR 的试用结论，并与 MinerU、DeepSeek-OCR、PP-ChatOCRv4 做横向对比。

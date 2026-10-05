@@ -5,10 +5,13 @@ subtitle: kv cache、attention
 cover-img: /assets/img/path.jpg
 thumbnail-img: /assets/img/thumb.png
 share-img: /assets/img/path.jpg
-tags: [books, test]
-category: AI大模型
+tags: ["KV Cache", "PagedAttention", "FlashAttention"]
+category: 模型与视觉
 author: HuaC
 mathjax: true
+kind: analysis
+topics: [models-vision]
+summary: 梳理 KV Cache、PagedAttention、Prefix Caching 与 FlashAttention，理解推理加速中的存储和计算取舍。
 ---
 
 ## KV Cache

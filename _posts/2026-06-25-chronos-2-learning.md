@@ -1,15 +1,18 @@
 ---
 layout: post
-title: Chronos-2: The best Time Series Forecasting model?   
+title: "Chronos-2: The best Time Series Forecasting model?"
 subtitle: 时序预测大模型
 cover-img: /assets/img/Chronos-2-struct.png
 thumbnail-img: /assets/img/thumb.png
 share-img: /assets/img/Chronos-2-struct.png
-tags: [ts forecasting, chronos-2]
-category: Time Series 
+tags: ["Chronos-2", "时序预测", "微调"]
+category: 时序建模
 comments: true
 mathjax: true
 author: HuaC
+kind: analysis
+topics: [time-series]
+summary: 梳理 Chronos-2 的模型结构与特点，记录全量微调和 LoRA 的使用方式。
 ---
 **关键词说明：**
 Future：未来的信息，一般是协变量的

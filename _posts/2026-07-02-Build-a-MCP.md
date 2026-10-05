@@ -2,11 +2,14 @@
 layout: post
 title: Build un custom MCP   
 subtitle: 本地项目构建为MCP，并配置到智能体中
-tags: [ts forecasting, chronos-2]
-category: agent
+tags: ["MCP", "工具调用", "智能体"]
+category: Agent 工程
 comments: true
 mathjax: true
 author: HuaC
+kind: engineering
+topics: [agents]
+summary: 记录将本地项目封装为 MCP 服务的过程，以及在智能体中接入本地与远程服务的配置方法。
 ---
 
 ## MCP是什么

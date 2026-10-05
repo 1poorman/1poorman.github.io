@@ -5,11 +5,14 @@ subtitle: 预测轨与检测轨模型基准分析
 cover-img: /assets/img/Chronos-2-struct.png
 thumbnail-img: /assets/img/thumb.png
 share-img: /assets/img/Chronos-2-struct.png
-tags: [time series, anomaly detection, benchmark]
-category: Time Series 
+tags: ["时序预测", "异常检测", "模型基准", "消融实验"]
+category: 时序建模
 comments: true
 mathjax: true
 author: HuaC
+kind: experiment
+topics: [time-series]
+summary: 在仿真工况下比较 GRU、PatchTST、TimesFM、Chronos 的预测表现，以及 VAE 与 Anomaly-Transformer 的检测表现。
 ---
 
 
@@ -215,4 +218,3 @@ window=7200、horizon=1800、epochs=3、train_48h 前 24h，仅通道组合不�
 4. **检测**：Anomaly-Transformer 误报更低（0.36% vs 0.62%，稳定工况段零误报）、单窗口评分更快（8.5ms），作为默认异常轨成立；批量评分显存较重（2000 窗 2.8GB），
    但实时流单窗口（120 条）仅 8.5ms/低显存，不受影响。
 5. **实时流预算**：所有模型延迟（≤86ms）均满足实时流 60s 节流，四个预测后端（GRU 自动多变量）+ 两个检测后端均支持运行时即切即用。
-

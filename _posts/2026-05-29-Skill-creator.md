@@ -5,11 +5,14 @@ subtitle: skill creator
 cover-img: /assets/img/path.jpg
 thumbnail-img: /assets/img/thumb.png
 share-img: /assets/img/path.jpg
-tags: [skill, AI, 教程]
-category: agent
+tags: ["Skill", "智能体", "工具调用"]
+category: Agent 工程
 comments: true
 mathjax: true
 author: HuaC
+kind: engineering
+topics: [agents]
+summary: 从目录结构、触发条件到执行流程，整理可复用 Skill 的编写方法与配置示例。
 ---
 
 ## 引言

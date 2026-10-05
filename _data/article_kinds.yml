@@ -1,0 +1,9 @@
+analysis:
+  label: 技术分析
+  code: ANALYSIS
+experiment:
+  label: 实验记录
+  code: EXPERIMENT
+engineering:
+  label: 工程实践
+  code: ENGINEERING

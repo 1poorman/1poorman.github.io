@@ -5,11 +5,14 @@ subtitle: 时序异常检测杂录
 cover-img: /assets/img/Chronos-2-struct.png
 thumbnail-img: /assets/img/thumb.png
 share-img: /assets/img/Chronos-2-struct.png
-tags: [ts anomaly]
-category: Time Series 
+tags: ["异常检测", "VAE", "Isolation Forest"]
+category: 时序建模
 comments: true
 mathjax: true
 author: HuaC
+kind: analysis
+topics: [time-series]
+summary: 整理 VAE、扩散模型与孤立森林在时序异常检测中的组合思路，以及残差特征的作用。
 ---
 
 ## 一、vae+diffusion
@@ -49,4 +52,3 @@ author: HuaC
 
 流程：原始时序 -> VAE重构 -> 计算残差序列 -> 将残差序列输入 Isolation Forest。
 原理：VAE 负责把“正常的周期和趋势”过滤掉，Isolation Forest 负责在“纯净的残差空间”中寻找空间上的离群点。这比直接对原始数据跑 iForest 效果好得多。
-

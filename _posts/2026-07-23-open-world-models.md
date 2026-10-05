@@ -2,11 +2,14 @@
 layout: post
 title: Some Open Vocabulary Models
 subtitle: 简要说明几个经典的开放词汇检测模型
-tags: [OWM, clip]
-category: 开放词汇检测
+tags: ["开放词汇检测", "YOLO-World", "RAM", "CLIP"]
+category: 模型与视觉
 comments: true
 mathjax: true
 author: HuaC
+kind: analysis
+topics: [models-vision]
+summary: 简要整理 YOLOE、YOLO-World、RAM 与 Grounding-SAM 的结构特点和开放词汇识别思路。
 ---
 
 ## 一、 YOLOE-26

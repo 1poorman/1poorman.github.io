@@ -5,11 +5,14 @@ subtitle: try to build a agent with langchain
 cover-img: /assets/img/path.jpg
 thumbnail-img: /assets/img/thumb.png
 share-img: /assets/img/path.jpg
-tags: [agent, langchain]
-category: agent
+tags: ["LangChain", "Agent", "状态管理"]
+category: Agent 工程
 comments: true
 mathjax: true
 author: HuaC
+kind: engineering
+topics: [agents]
+summary: 从创建 LangChain Agent 开始，逐步加入结构化响应、记忆与中间件，并处理长任务中的常见故障。
 ---
 
 基于langchain框架开始搭建智能体，本文记录一些基本设置与注意事项。

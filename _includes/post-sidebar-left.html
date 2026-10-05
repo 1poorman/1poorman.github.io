@@ -1,23 +1,25 @@
-<!-- Left Sidebar: All articles catalog grouped by category -->
+<!-- Listed articles, grouped by the same topics as the article index. -->
 <aside class="sidebar-left">
   <div class="sidebar-inner">
     <h4 class="sidebar-heading">文章目录</h4>
-    {% assign categories = site.posts | map: "category" | compact | uniq | sort %}
-    {% for cat in categories %}
+    {% assign sidebar_posts = site.posts | where_exp: 'post', 'post.listed != false' %}
+    {% for topic in site.data.topics %}
+      {% assign topic_posts = sidebar_posts | where_exp: 'post', 'post.topics contains topic.id' %}
+      {% if topic_posts.size > 0 %}
       <div class="sidebar-category">
-        <div class="sidebar-category-title" data-category="{{ cat }}">
-          <span>{%- include category-icon.html cat=cat -%}</span> {{ cat }}
-          <i class="fas fa-chevron-down sidebar-collapse-icon"></i>
-        </div>
-        <ul class="sidebar-category-list">
-          {% assign cat_posts = site.posts | where: "category", cat | sort: "date" | reverse %}
-          {% for post in cat_posts %}
+        <button type="button" class="sidebar-category-title" aria-expanded="true" aria-controls="sidebar-topic-{{ topic.id }}">
+          {% include lab-icon.html name=topic.icon size=16 %} {{ topic.name }}
+          <i class="fas fa-chevron-down sidebar-collapse-icon" aria-hidden="true"></i>
+        </button>
+        <ul class="sidebar-category-list" id="sidebar-topic-{{ topic.id }}">
+          {% for post in topic_posts %}
             <li class="sidebar-post-item {% if post.url == page.url %}active{% endif %}">
-              <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+              <a href="{{ post.url | relative_url }}"{% if post.url == page.url %} aria-current="page"{% endif %}>{{ post.title | strip_html | escape }}</a>
             </li>
           {% endfor %}
         </ul>
       </div>
+      {% endif %}
     {% endfor %}
   </div>
 </aside>

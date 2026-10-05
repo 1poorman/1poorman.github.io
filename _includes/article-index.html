@@ -1,0 +1,22 @@
+{% assign index_posts = site.posts | where_exp: 'post', 'post.listed != false' %}
+{% if include.kind %}{% assign index_posts = index_posts | where: 'kind', include.kind %}{% endif %}
+<section class="lab-index" data-article-index data-locked-kind="{{ include.kind | default: '' }}" aria-label="文章索引">
+  <div class="lab-index-controls" data-index-controls hidden>
+    <form class="lab-filter-form" role="search" method="get" action="{{ page.url | relative_url }}" data-filter-form>
+      <div class="lab-search-field">{% include lab-icon.html name='search' %}<label class="lab-sr-only" for="article-query">搜索标题、摘要或标签</label><input id="article-query" name="q" type="search" placeholder="搜索标题、摘要或标签…" autocomplete="off" data-filter-query></div>
+      <div class="lab-select-field"><label for="article-topic">主题</label><select id="article-topic" name="topic" data-filter-topic><option value="">全部主题</option>{% for topic in site.data.topics %}<option value="{{ topic.id }}">{{ topic.name }}</option>{% endfor %}</select></div>
+      <div class="lab-select-field"><label for="article-sort">排序</label><select id="article-sort" name="sort" data-filter-sort><option value="published">最新发布</option><option value="updated">最近更新</option><option value="title">标题顺序</option></select></div>
+      <button type="submit" class="lab-sr-only">搜索</button>
+    </form>
+    {% unless include.kind %}
+      <div class="lab-kind-filters" role="group" aria-label="按文章类型筛选">
+        <button type="button" data-filter-kind="" aria-pressed="true">全部记录 <span data-kind-count="">{{ index_posts.size }}</span></button>
+        {% for kind in site.data.article_kinds %}{% assign kind_posts = index_posts | where: 'kind', kind[0] %}<button type="button" data-filter-kind="{{ kind[0] }}" aria-pressed="false">{{ kind[1].label }} <span data-kind-count="{{ kind[0] }}">{{ kind_posts.size }}</span></button>{% endfor %}
+      </div>
+    {% endunless %}
+  </div>
+  <div class="lab-index-status"><p role="status" aria-live="polite" aria-atomic="true" data-result-count>共 {{ index_posts.size }} 篇记录</p><button class="lab-text-button" type="button" data-filter-reset hidden>清除筛选 {% include lab-icon.html name='close' size=14 %}</button></div>
+  <div class="lab-note-list" data-article-results>{% for post in index_posts %}{% include note-card.html post=post %}{% endfor %}</div>
+  <div class="lab-empty-state" data-empty-state hidden><span class="lab-empty-icon">{% include lab-icon.html name='search' size=28 %}</span><h2>没有找到匹配的记录</h2><p>试试其他关键词，或清除筛选条件。</p><button class="lab-button lab-button-secondary" type="button" data-filter-reset>查看全部记录 {% include lab-icon.html name='arrow-right' size=17 %}</button></div>
+  <noscript><p class="lab-index-noscript">全部记录已列在这里，也可以<a href="{{ '/topics/' | relative_url }}">按专题阅读</a>。</p></noscript>
+</section>

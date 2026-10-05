@@ -1,0 +1,22 @@
+---
+layout: lab
+title: 研究专题
+subtitle: 围绕模型与视觉、时序建模、Agent 工程、数据系统和开发实践，沿着问题深入阅读。
+permalink: /topics/
+nav_section: 专题
+---
+{% assign topic_articles = site.posts | where_exp: 'post', 'post.listed != false' %}
+<div class="lab-container lab-page-content">
+  <header class="lab-page-heading"><p class="lab-overline">RESEARCH DIRECTIONS</p><h1>沿着一个问题，<br>把理解再推进一步。</h1><p>把分散的分析、实验与实践放回同一个研究方向。</p></header>
+  <div class="lab-topic-grid">
+    {% for topic in site.data.topics %}
+      {% assign related_articles = topic_articles | where_exp: 'post', 'post.topics contains topic.id' %}
+      <section class="lab-topic-panel" id="{{ topic.id }}" aria-labelledby="topic-title-{{ topic.id }}">
+        <div class="lab-topic-panel-heading"><span class="lab-topic-icon">{% include lab-icon.html name=topic.icon size=24 %}</span><span class="lab-overline">{{ topic.code }}</span><span class="lab-topic-panel-count">{{ related_articles.size }} 篇</span></div>
+        <h2 id="topic-title-{{ topic.id }}">{{ topic.name }}</h2><p>{{ topic.description }}</p>
+        <ul class="lab-topic-reading-list">{% for post in related_articles %}<li><a href="{{ post.url | relative_url }}"><span>{{ post.title | strip_html | escape }}</span>{% include lab-icon.html name='arrow-up-right' size=16 %}</a><span>{{ site.data.article_kinds[post.kind].label }}</span></li>{% endfor %}</ul>
+        <a class="lab-inline-link" href="{{ '/archive' | relative_url }}?topic={{ topic.id }}">在索引中查看 {% include lab-icon.html name='arrow-right' size=16 %}</a>
+      </section>
+    {% endfor %}
+  </div>
+</div>

@@ -1,0 +1,38 @@
+:root {
+  color-scheme: light;
+  --lab-canvas: #f8f9f5;
+  --lab-paper: #ffffff;
+  --lab-ink: #24352d;
+  --lab-muted: #64716a;
+  --lab-faint: #707a73;
+  --lab-line: #dce3da;
+  --lab-line-strong: #c7d2c7;
+  --lab-accent: #286447;
+  --lab-accent-hover: #174d34;
+  --lab-accent-soft: #edf3e9;
+  --lab-accent-line: #cddcc8;
+  --lab-blue: #45667f;
+  --lab-amber: #8e6034;
+  --lab-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif;
+  --lab-serif: 'Noto Serif CJK SC', 'Source Han Serif SC', 'Songti SC', STSong, Georgia, serif;
+  --lab-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', 'Noto Sans Mono CJK SC', monospace;
+  --lab-radius: 8px;
+  --lab-header-height: 76px;
+}
+
+html[data-theme='dark'] {
+  color-scheme: dark;
+  --lab-canvas: #151c18;
+  --lab-paper: #1d2721;
+  --lab-ink: #e4ece4;
+  --lab-muted: #a5b6aa;
+  --lab-faint: #a1b0a5;
+  --lab-line: #354339;
+  --lab-line-strong: #4a5e4e;
+  --lab-accent: #a3d8af;
+  --lab-accent-hover: #c1edca;
+  --lab-accent-soft: #24382a;
+  --lab-accent-line: #425c45;
+  --lab-blue: #a3c7de;
+  --lab-amber: #dfbb8a;
+}

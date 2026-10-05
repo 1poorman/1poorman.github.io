@@ -1,16 +1,15 @@
 ---
-layout: default
+layout: lab
 title: 404 - 页面不存在
 permalink: /404.html
+subtitle: 查找文章，或返回 HuaC Lab 首页继续阅读。
+sitemap: false
+js:
+  - /assets/js/legacy-links.js
 ---
 
-<div class="text-center">
-  <h1>哎呀，这个页面不存在 (404)</h1>
-  <h1>可能被烟花带走了… 🎆</h1>
-  <br/>
-
-  <img src="{{ 'assets/img/404-southpark.jpg' | relative_url }}" alt="Not found" loading="lazy" />
-  <br/>
-
-  <p><a href="{{ '/' | relative_url }}">&laquo; 返回首页</a></p>
+<div class="lab-container lab-page-content">
+  <header class="lab-page-heading"><p class="lab-overline">404 / NOTE NOT FOUND</p><h1>这条记录，<br>暂时没有找到。</h1><p>地址可能已调整，也可以从文章索引继续查找。</p></header>
+  <div class="lab-hero-actions"><a class="lab-button lab-button-primary" href="{{ '/archive' | relative_url }}">查找文章 {% include lab-icon.html name='search' size=17 %}</a><a class="lab-inline-link" href="{{ '/' | relative_url }}">返回首页 {% include lab-icon.html name='arrow-right' size=17 %}</a></div>
+  <p class="lab-index-noscript">如果你正在寻找旧链接中的 Chronos-2 笔记，可从<a href="{{ '/2026-06-25-chronos-2-learning/' | relative_url }}" data-legacy-chronos>这里继续阅读</a>。</p>
 </div>

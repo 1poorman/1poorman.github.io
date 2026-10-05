@@ -1,0 +1,16 @@
+---
+css:
+  - /assets/css/lab-pages.css
+---
+<!DOCTYPE html>
+<html lang="{{ page.language | default: site.language | default: 'zh-CN' }}">
+{% include head.html %}
+<body class="lab-site">
+  {% include gtm_body.html %}
+  <a class="lab-skip-link" href="#main-content">跳到主要内容</a>
+  {% include nav.html %}
+  <main id="main-content" class="lab-main" tabindex="-1">{{ content }}</main>
+  {% include footer.html %}
+  {% include footer-scripts.html %}
+</body>
+</html>

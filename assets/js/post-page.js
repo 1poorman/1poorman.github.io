@@ -2,6 +2,21 @@
 (function () {
   'use strict';
 
+  /* Topic lists are also usable when an article has no section headings. */
+  document.querySelectorAll('.sidebar-category-title').forEach(function (title) {
+    title.addEventListener('click', function () {
+      var list = this.nextElementSibling;
+      var icon = this.querySelector('.sidebar-collapse-icon');
+      if (!list) return;
+      list.hidden = !list.hidden;
+      this.setAttribute('aria-expanded', String(!list.hidden));
+      if (icon) {
+        icon.classList.toggle('fa-chevron-down', !list.hidden);
+        icon.classList.toggle('fa-chevron-right', list.hidden);
+      }
+    });
+  });
+
   var post = document.querySelector('.blog-post');
   var tocNav = document.getElementById('toc-nav');
   if (!post || !tocNav) return;
@@ -90,16 +105,4 @@
     onScroll();
   }
 
-  /* 左侧分类目录折叠 */
-  document.querySelectorAll('.sidebar-category-title').forEach(function (title) {
-    title.addEventListener('click', function () {
-      var list = this.nextElementSibling;
-      var icon = this.querySelector('.sidebar-collapse-icon');
-      if (list) {
-        list.classList.toggle('collapsed');
-        icon.classList.toggle('fa-chevron-down');
-        icon.classList.toggle('fa-chevron-right');
-      }
-    });
-  });
 })();

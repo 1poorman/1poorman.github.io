@@ -1,0 +1,12 @@
+---
+layout: lab
+title: 项目与记录
+subtitle: 将研究与实际问题连接，查看开源项目及其相关技术记录。
+permalink: /projects/
+nav_section: 项目
+---
+<div class="lab-container lab-page-content">
+  <header class="lab-page-heading"><p class="lab-overline">PROJECTS & PRACTICE</p><h1>把理解写成代码，<br>放到实际问题里。</h1><p>这些项目连接了模型、数据和应用，也留下了对应的技术记录。</p></header>
+  <div class="lab-project-grid lab-project-grid-detailed">{% for project in site.data.projects %}{% include project-card.html project=project related=true %}{% endfor %}</div>
+  <a class="lab-inline-link lab-projects-github" href="https://github.com/{{ site.social-network-links.github }}">在 GitHub 查看更多项目 {% include lab-icon.html name='arrow-up-right' size=17 %}</a>
+</div>

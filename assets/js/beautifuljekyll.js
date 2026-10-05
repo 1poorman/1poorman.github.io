@@ -10,6 +10,7 @@ let BeautifulJekyllJS = {
 
     // Shorten the navbar after scrolling a little bit down
     $(window).scroll(function() {
+        if (!$('.navbar').length) return;
         if ($(".navbar").offset().top > 50) {
             $(".navbar").addClass("top-nav-short");
         } else {
@@ -32,6 +33,7 @@ let BeautifulJekyllJS = {
   },
 
   initNavbar : function() {
+    if (!document.querySelector('.navbar')) return;
     // Set the navbar-dark/light class based on its background color
     const rgb = $('.navbar').css("background-color").replace(/[^\d,]/g,'').split(",");
     const brightness = Math.round(( // http://www.w3.org/TR/AERT#color-contrast

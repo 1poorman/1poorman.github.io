@@ -2,6 +2,7 @@
 layout: page
 title: 关于我
 subtitle: 一个爱折腾的技术人
+nav_section: 关于
 ---
 
 <img class="about-avatar" src="/assets/img/avatar-icon.png" alt="HuaC 的头像">

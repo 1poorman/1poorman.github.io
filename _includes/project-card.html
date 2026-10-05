@@ -1,0 +1,12 @@
+{%- assign project = include.project -%}
+<article class="lab-project" id="project-{{ project.id }}">
+  <div class="lab-project-top"><span class="lab-project-icon">{% include lab-icon.html name=project.icon size=22 %}</span><span>{{ project.label }}</span></div>
+  <h3><a href="{{ project.url }}">{{ project.name }}{% include lab-icon.html name='arrow-up-right' size=17 %}</a></h3>
+  <p>{{ project.description }}</p>
+  <div class="lab-project-meta"><span class="lab-language-dot" aria-hidden="true"></span>{{ project.language }}<span class="lab-project-repo">{{ project.repository }}</span></div>
+  {% if include.related %}
+    <div class="lab-project-related"><span class="lab-overline">相关记录</span>
+      {% for post_path in project.related_posts %}{% assign project_post = site.posts | where: 'path', post_path | first %}{% if project_post and project_post.listed != false %}<a href="{{ project_post.url | relative_url }}">{{ project_post.title | strip_html | escape }}{% include lab-icon.html name='arrow-right' size=16 %}</a>{% endif %}{% endfor %}
+    </div>
+  {% endif %}
+</article>

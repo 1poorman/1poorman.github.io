@@ -7,7 +7,7 @@ layout: base
 <!-- Fireworks Background Canvas -->
 <canvas id="fireworks-bg" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none;"></canvas>
 
-<main class="post-layout-container">
+<main class="post-layout-container" id="main-content" tabindex="-1">
   <div class="post-layout-row">
     <!-- Left Sidebar: All articles catalog -->
     <div class="post-sidebar-left-col">
@@ -56,7 +56,7 @@ layout: base
         <div class="blog-tags">
           <span>标签：</span>
           {% for tag in page.tags %}
-            <a href="{{ '/tags' | relative_url }}#{{- tag -}}">{{- tag -}}</a>
+            <a href="{{ '/tags' | relative_url }}#{{ tag | escape }}">{{ tag | escape }}</a>
           {% endfor %}
         </div>
       {% endif %}
@@ -75,7 +75,8 @@ layout: base
 
       {% comment %}相关文章：同分类优先，不足时用最新文章补齐{% endcomment %}
       {% assign related_list = "" | split: "" %}
-      {% for p in site.posts %}
+      {% assign published_posts = site.posts | where_exp: 'post', 'post.listed != false' %}
+      {% for p in published_posts %}
         {% if p.category == page.category and p.url != page.url %}
           {% assign related_list = related_list | push: p %}
         {% endif %}
@@ -83,7 +84,7 @@ layout: base
       {% assign related_list = related_list | slice: 0, 3 %}
       {% if related_list.size == 0 %}
         {% assign fallback_list = "" | split: "" %}
-        {% for p in site.posts %}
+        {% for p in published_posts %}
           {% if p.url != page.url %}
             {% assign fallback_list = fallback_list | push: p %}
           {% endif %}
@@ -106,24 +107,37 @@ layout: base
       </div>
       {% endif %}
 
+      {% assign previous_post = nil %}
+      {% assign next_post = nil %}
+      {% for post in published_posts %}
+        {% if post.url == page.url %}
+          {% assign previous_index = forloop.index0 | plus: 1 %}
+          {% assign next_index = forloop.index0 | minus: 1 %}
+          {% assign previous_post = published_posts[previous_index] %}
+          {% if next_index >= 0 %}{% assign next_post = published_posts[next_index] %}{% endif %}
+          {% break %}
+        {% endif %}
+      {% endfor %}
+      {% if previous_post or next_post %}
       <ul class="pagination blog-pager">
-        {% if page.previous.url %}
+        {% if previous_post %}
         <li class="page-item previous">
-          <a class="page-link" href="{{ page.previous.url | relative_url }}" data-toggle="tooltip" data-placement="top" title="{{page.previous.title | strip_html | xml_escape}}">
+          <a class="page-link" href="{{ previous_post.url | relative_url }}" data-toggle="tooltip" data-placement="top" title="{{ previous_post.title | strip_html | escape }}">
             <i class="fas fa-arrow-left" alt="上一篇"></i>
             <span class="d-none d-sm-inline-block">上一篇</span>
           </a>
         </li>
         {% endif %}
-        {% if page.next.url %}
+        {% if next_post %}
         <li class="page-item next">
-          <a class="page-link" href="{{ page.next.url | relative_url }}" data-toggle="tooltip" data-placement="top" title="{{page.next.title | strip_html | xml_escape}}">
+          <a class="page-link" href="{{ next_post.url | relative_url }}" data-toggle="tooltip" data-placement="top" title="{{ next_post.title | strip_html | escape }}">
             <span class="d-none d-sm-inline-block">下一篇</span>
             <i class="fas fa-arrow-right" alt="下一篇"></i>
           </a>
         </li>
         {% endif %}
       </ul>
+      {% endif %}
       {% include comments.html %}
     </div>
 

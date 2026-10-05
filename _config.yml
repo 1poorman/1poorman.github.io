@@ -10,7 +10,10 @@
 ############################
 
 # Name of website
-title: HuaC 的技术博客
+title: HuaC Lab
+description: 技术分析与实验记录。记录模型机制、实验结果与工程取舍。
+url: "https://1poorman.github.io"
+baseurl: ""
 
 # Your name to show in the footer
 author: HuaC
@@ -20,12 +23,11 @@ author: HuaC
 ###############################################
 
 navbar-links:
-  关于我: "aboutme"
-  文章目录: "archive"
-  资源链接:
-    - Beautiful Jekyll: "https://beautifuljekyll.com"
-    - Learn markdown: "https://www.markdowntutorial.com/"
-  # Author's home: "https://deanattali.com"
+  文章: "/archive"
+  实验: "/experiments/"
+  专题: "/topics/"
+  项目: "/projects/"
+  关于: "/aboutme"
 
 ################
 # --- Logo --- #
@@ -87,7 +89,7 @@ social-network-links:
 
 # If you want your website to generate an RSS feed, provide a description
 # The URL for the feed will be https://<your_website>/feed.xml
-rss-description: HuaC 的技术博客，分享 AI、大数据与工程实践
+rss-description: HuaC Lab · 技术分析与实验记录，分享 AI、时序建模与数据系统中的原理、验证和工程实践。
 
 ###########################
 # --- General options --- #
@@ -161,15 +163,12 @@ mobile-theme-col: "#2dd4bf"
 
 # For any extra visual customization, you can include additional CSS files in every page on your site. List any custom CSS files here
 site-css:
-  - "https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.7.0/style.css"
-  - "https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@5/index.css"
-  - "/assets/css/custom.css"
+  - "/assets/css/lab-tokens.css"
+  - "/assets/css/lab.css"
 
 # If you have common JavaScript files that should be included in every page, list them here
 site-js:
-  - "/assets/js/custom-script.js"
-  - "/assets/js/post-page.js"
-  - "/assets/js/fireworks.js"
+  - "/assets/js/lab.js"
 
 #################################
 # --- Web Analytics Section --- #
@@ -283,6 +282,8 @@ defaults:
       type: "posts"
     values:
       layout: "post"
+      nav_section: "文章"
+      listed: true
       comments: true  # add comments to all blog posts
       social-share: true # add social media sharing buttons to all blog posts
       readtime: true # show estimated reading time on all blog posts
@@ -303,6 +304,14 @@ exclude:
   - README.md
   - screenshot.png
   - docs/
+  - scripts/
+  - tests/
+  - package.json
+  - package-lock.json
+  - playwright.config.cjs
+  - node_modules/
+  - test-results/
+  - playwright-report/
 
 plugins:
   - jekyll-paginate
@@ -310,4 +319,3 @@ plugins:
 
 # Beautiful Jekyll / Dean Attali
 # 2fc73a3a967e97599c9763d05e564189
-

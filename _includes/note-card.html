@@ -1,0 +1,12 @@
+{%- assign note = include.post -%}
+{%- assign note_kind = site.data.article_kinds[note.kind] -%}
+{%- assign note_topic = site.data.topics | where: 'id', note.topics.first | first -%}
+<article class="lab-note" data-article data-kind="{{ note.kind | escape }}" data-topics="{{ note.topics | join: ' ' | escape }}" data-title="{{ note.title | strip_html | escape }}" data-search="{{ note.title | strip_html | escape }} {{ note.summary | escape }} {{ note.tags | join: ' ' | escape }} {{ note_topic.name | escape }}" data-published="{{ note.date | date: '%s' }}" data-updated="{{ note.last-updated | default: note.date | date: '%s' }}">
+  <time class="lab-note-date" datetime="{{ note.date | date_to_xmlschema }}"><span>{{ note.date | date: '%m.%d' }}</span><span>{{ note.date | date: '%Y' }}</span></time>
+  <div class="lab-note-body">
+    <div class="lab-note-eyebrow"><span class="lab-kind lab-kind-{{ note.kind }}">{{ note_kind.label | default: '技术记录' }}</span>{% if note_topic %}<span class="lab-note-topic">{{ note_topic.name }}</span>{% endif %}</div>
+    <h3><a href="{{ note.url | relative_url }}">{{ note.title | strip_html | escape }}<span class="lab-note-arrow">{% include lab-icon.html name='arrow-up-right' size=18 %}</span></a></h3>
+    <p>{{ note.summary | default: note.excerpt | strip_html | truncate: 160 | escape }}</p>
+    <div class="lab-note-tags" aria-label="文章标签">{% for tag in note.tags limit: 3 %}<span>{{ tag | escape }}</span>{% endfor %}{% if note.last-updated %}<span>更新 {{ note.last-updated | date: '%Y.%m.%d' }}</span>{% endif %}</div>
+  </div>
+</article>

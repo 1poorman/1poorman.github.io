@@ -114,6 +114,23 @@ html[data-theme='dark'] .lab-main .lab-button-primary { color: var(--lab-canvas)
 /* Keep the existing article templates compatible with the shared header. */
 .lab-legacy .intro-header { margin-top: 0; }
 .lab-legacy .intro-header:not(.big-img) { padding-top: 45px; }
+/* Keep cover photos and crossfades below a persistent contrast layer. */
+.lab-legacy .intro-header.big-img { isolation: isolate; background-color: #17251e; }
+.lab-legacy .intro-header.big-img .big-img-transition { z-index: 0; }
+.lab-legacy .intro-header.big-img::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(10, 20, 16, .72);
+  pointer-events: none;
+}
+.lab-legacy .intro-header.big-img > .container-md { position: relative; z-index: 2; }
+.lab-legacy .intro-header.big-img .img-desc { z-index: 2; }
+.lab-legacy .intro-header.big-img :is(.post-heading, .page-heading, h1, .post-subheading, .page-subheading, .post-meta) {
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, .45);
+}
 .lab-legacy .lab-header .lab-brand, .lab-legacy .lab-footer-brand { font-family: var(--lab-sans); }
 .lab-legacy :is(.lab-header, .lab-footer) :target::before { content: none; }
 .lab-legacy #main-content { scroll-margin-top: 90px; }

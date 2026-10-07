@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="555" viewBox="0 0 1120 555" role="img" aria-labelledby="title desc">
+  <title id="title">PaddleOCR 的三类任务流程</title>
+  <desc id="desc">PP-OCR 使用检测、校正和 CTC 识别输出文字及坐标；PP-Structure 将 OCR、版面和元素识别结果组装为结构化文档；PaddleOCR-VL 结合视觉编码与语言解码进行元素识别，并由解析产线组织输出。</desc>
+  <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#286447"/></marker></defs>
+  <rect width="1120" height="555" rx="18" fill="#f8f9f5"/>
+  <g font-family="Arial, 'Noto Sans CJK SC', sans-serif" fill="#24352d">
+    <text x="36" y="45" font-size="25" font-weight="700">PaddleOCR · 感知、结构与生成</text>
+    <text x="36" y="75" font-size="15" fill="#64716a">三条相关路线，服务于不同的输出需求</text>
+    <g fill="#fff" stroke="#c7d2c7" stroke-width="1.5">
+      <rect x="36" y="114" width="1048" height="108" rx="12"/>
+      <rect x="36" y="257" width="1048" height="108" rx="12"/>
+      <rect x="36" y="400" width="1048" height="108" rx="12"/>
+    </g>
+    <g font-size="19" font-weight="700">
+      <text x="55" y="153">PP-OCR</text>
+      <text x="55" y="296">PP-Structure</text>
+      <text x="55" y="439">PaddleOCR-VL</text>
+    </g>
+    <g fill="#64716a" font-size="14">
+      <text x="55" y="183">文本感知</text>
+      <text x="55" y="326">模块化解析</text>
+      <text x="55" y="469">视觉语言识别</text>
+    </g>
+    <g stroke="#cddcc8" fill="#edf3e9">
+      <rect x="236" y="137" width="180" height="62" rx="7"/>
+      <rect x="452" y="137" width="180" height="62" rx="7"/>
+      <rect x="668" y="137" width="180" height="62" rx="7"/>
+      <rect x="884" y="137" width="176" height="62" rx="7"/>
+      <rect x="236" y="280" width="180" height="62" rx="7"/>
+      <rect x="452" y="280" width="180" height="62" rx="7"/>
+      <rect x="668" y="280" width="180" height="62" rx="7"/>
+      <rect x="884" y="280" width="176" height="62" rx="7"/>
+      <rect x="236" y="423" width="180" height="62" rx="7"/>
+      <rect x="452" y="423" width="180" height="62" rx="7"/>
+      <rect x="668" y="423" width="180" height="62" rx="7"/>
+      <rect x="884" y="423" width="176" height="62" rx="7"/>
+    </g>
+    <g text-anchor="middle" font-size="16">
+      <text x="326" y="173">DB 文本区域检测</text>
+      <text x="542" y="173">裁剪 / 方向校正</text>
+      <text x="758" y="163">视觉编码 + CTC</text>
+      <text x="758" y="185" font-size="12" fill="#64716a">按模型选择 CNN / SVTR</text>
+      <text x="972" y="173">文字 + 位置</text>
+      <text x="326" y="316">版面与区域分析</text>
+      <text x="542" y="306">OCR / 表格 / 公式</text>
+      <text x="542" y="328" font-size="12" fill="#64716a">按区域分工识别</text>
+      <text x="758" y="316">阅读顺序与组装</text>
+      <text x="972" y="316">Markdown / JSON</text>
+      <text x="326" y="459">页面 / 元素区域</text>
+      <text x="542" y="459">动态分辨率编码</text>
+      <text x="758" y="449">任务提示 + 解码</text>
+      <text x="758" y="471" font-size="12" fill="#64716a">自回归生成元素结果</text>
+      <text x="972" y="459">解析产线组织输出</text>
+    </g>
+    <g fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)">
+      <path d="M416 168H450"/><path d="M632 168H666"/><path d="M848 168H882"/>
+      <path d="M416 311H450"/><path d="M632 311H666"/><path d="M848 311H882"/>
+      <path d="M416 454H450"/><path d="M632 454H666"/><path d="M848 454H882"/>
+    </g>
+    <text x="38" y="245" font-size="13" fill="#64716a">PP-OCR 的 GTC / NRTR 辅助监督与教师蒸馏用于训练，推理可仅保留 CTC 分支。</text>
+    <text x="38" y="537" font-size="13" fill="#64716a">流程为概念图；预处理开关、区域模型和具体输出结构需按模型版本核对。</text>
+  </g>
+</svg>

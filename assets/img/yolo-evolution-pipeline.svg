@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="460" viewBox="0 0 1120 460" role="img" aria-labelledby="title desc">
+  <title id="title">YOLO 检测器的特征、预测与输出流程</title>
+  <desc id="desc">图像经过 Backbone、多尺度 Neck 与检测头。检测头联合输出类别与框，一对多路线经 NMS 去重，一对一路线经筛选得到结果；两条路线均包含分类与框回归。标签分配和损失在训练时监督预测头。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#286447"/></marker>
+  </defs>
+  <rect width="1120" height="460" rx="18" fill="#f8f9f5"/>
+  <g font-family="Arial, 'Noto Sans CJK SC', sans-serif" fill="#24352d">
+    <text x="36" y="45" font-size="25" font-weight="700">YOLO · 从图像特征到检测集合</text>
+    <text x="36" y="74" font-size="15" fill="#64716a">结构示意：具体尺度、预测头和部署路径随版本变化</text>
+    <g stroke="#c7d2c7" stroke-width="1.5" fill="#fff">
+      <rect x="36" y="151" width="130" height="102" rx="10"/>
+      <rect x="205" y="131" width="180" height="142" rx="10"/>
+      <rect x="426" y="115" width="188" height="176" rx="10"/>
+      <rect x="652" y="115" width="164" height="176" rx="10"/>
+      <rect x="857" y="133" width="227" height="61" rx="8" fill="#edf3e9"/>
+      <rect x="857" y="213" width="227" height="61" rx="8" fill="#edf3e9"/>
+    </g>
+    <g text-anchor="middle">
+      <text x="101" y="193" font-size="20" font-weight="700">输入图像</text>
+      <text x="101" y="224" font-size="15">H × W × 3</text>
+      <text x="295" y="169" font-size="21" font-weight="700">Backbone</text>
+      <text x="295" y="203" font-size="16">局部纹理 → 语义</text>
+      <text x="295" y="240" font-size="14" fill="#64716a">逐级提取特征</text>
+      <text x="520" y="150" font-size="21" font-weight="700">Neck</text>
+      <text x="520" y="181" font-size="16">多尺度信息融合</text>
+      <text x="520" y="215" font-size="16" fill="#286447">P3 / P4 / P5</text>
+      <text x="520" y="256" font-size="14" fill="#64716a">兼顾小目标与大目标</text>
+      <text x="734" y="150" font-size="21" font-weight="700">Head</text>
+      <text x="734" y="186" font-size="17">分类 + 框回归</text>
+      <text x="734" y="219" font-size="14">共同组成检测结果</text>
+      <text x="734" y="256" font-size="13" fill="#64716a">结构随版本而变化</text>
+      <text x="970" y="160" font-size="17" font-weight="700">一对多预测 → NMS</text>
+      <text x="970" y="183" font-size="13" fill="#64716a">抑制重复候选</text>
+      <text x="970" y="240" font-size="17" font-weight="700">一对一预测 → 筛选</text>
+      <text x="970" y="263" font-size="13" fill="#64716a">选择端到端部署路径时</text>
+    </g>
+    <g fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)">
+      <path d="M166 202H203"/><path d="M385 202H424"/>
+      <path d="M614 202H650"/>
+      <path d="M816 202H837V164H855"/><path d="M837 202V242H855"/>
+    </g>
+    <rect x="205" y="340" width="602" height="72" rx="10" fill="#edf3e9" stroke="#cddcc8"/>
+    <text x="228" y="369" font-size="17" font-weight="700">仅训练：真实标注 → 标签分配 → 分类与定位损失</text>
+    <text x="228" y="395" font-size="14" fill="#64716a">静态匹配 / SimOTA / TAL / 一致双分配等</text>
+    <path d="M732 340V294" fill="none" stroke="#286447" stroke-width="2" stroke-dasharray="5 5" marker-end="url(#arrow)"/>
+  </g>
+</svg>

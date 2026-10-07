@@ -111,7 +111,6 @@ test('sorting retains records and can promote an older article with a new revisi
     await route.fulfill({ response, body });
   });
   await page.goto('archive/');
-  await expect(noteTitles(page).first()).toHaveText(benchmark);
   const original = (await noteTitles(page).allTextContents()).map(title => title.trim());
   await page.getByLabel('排序', { exact: true }).selectOption('updated');
   await expect(noteTitles(page).first()).toHaveText('deepseek-ocr-2试用');

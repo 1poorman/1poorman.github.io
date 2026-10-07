@@ -158,7 +158,8 @@
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     if (!('IntersectionObserver' in window)) return;
 
-    var targets = document.querySelectorAll('.post-preview, .post-main-col .blog-post, .sidebar-inner');
+    // Long articles must remain readable without reaching a viewport ratio.
+    var targets = document.querySelectorAll('.post-preview, .sidebar-inner');
     if (!targets.length) return;
 
     var observer = new IntersectionObserver(function (entries) {

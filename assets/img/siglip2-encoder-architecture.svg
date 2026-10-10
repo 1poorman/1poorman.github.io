@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="790" viewBox="0 0 1120 790" role="img" aria-labelledby="title desc">
+<title id="title">SigLIP 2 · 双塔架构与两种视觉输入</title><desc id="desc">FixRes 与 NaFlex 使用各自匹配的权重和预处理；局部特征在池化前保留。</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#286447"/></marker><marker id="aux-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#865d79"/></marker></defs>
+<rect width="1120" height="790" rx="18" fill="#f8f9f5"/>
+<g font-family="Arial, Noto Sans CJK SC, sans-serif" fill="#24352d">
+<text x="36" y="45" font-size="26" text-anchor="start" fill="#24352d" font-weight="700">SigLIP 2 · 双塔架构与两种视觉输入</text>
+<text x="36" y="76" font-size="16" text-anchor="start" fill="#64716a" font-weight="400">FixRes 与 NaFlex 使用各自匹配的权重和预处理；局部特征在池化前保留。</text>
+<g data-diagram-box="true">
+<rect x="36" y="126" width="294" height="108" rx="10" fill="#ffffff" stroke="#c7d2c7" stroke-width="1.5"/>
+<text x="183.0" y="162.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">FixRes 固定分辨率</text>
+<text x="183.0" y="186.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">Resize → Patch Embedding</text>
+<text x="183.0" y="210.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">位置编码</text>
+</g>
+<g data-diagram-box="true">
+<rect x="36" y="276" width="294" height="108" rx="10" fill="#ffffff" stroke="#c7d2c7" stroke-width="1.5"/>
+<text x="183.0" y="312.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">NaFlex 动态输入</text>
+<text x="183.0" y="336.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">近似保持长宽比 / Patch 预算</text>
+<text x="183.0" y="360.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">二维位置插值 + Padding Mask</text>
+</g>
+<g data-diagram-box="true">
+<rect x="390" y="209" width="260" height="112" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="520.0" y="247.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">视觉 Transformer</text>
+<text x="520.0" y="271.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">Self-Attention + FFN</text>
+<text x="520.0" y="295.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">对应 FixRes / NaFlex 实现</text>
+</g>
+<path d="M330 180 L358 180 L358 245 L387 245" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M330 330 L358 330 L358 282 L387 282" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<g data-diagram-box="true">
+<rect x="690" y="218" width="154" height="94" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="767.0" y="259.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">视觉 Token H</text>
+<text x="767.0" y="283.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">N × d</text>
+</g>
+<path d="M650 265 L687 265" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<g data-diagram-box="true">
+<rect x="884" y="210" width="200" height="110" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="984.0" y="247.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">MAP 注意力池化</text>
+<text x="984.0" y="271.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">L2 归一化</text>
+<text x="984.0" y="295.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">全局图像向量 u</text>
+</g>
+<path d="M844 265 L881 265" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<g data-diagram-box="true">
+<rect x="690" y="364" width="394" height="68" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="887.0" y="392.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">未池化的稠密特征</text>
+<text x="887.0" y="416.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">供下游分割、定位或 VLM 使用</text>
+</g>
+<path d="M767 312 L767 361" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<g data-diagram-box="true">
+<rect x="36.0" y="492" width="330.6666666666667" height="88" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="201.33333333333334" y="530.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">文本输入</text>
+<text x="201.33333333333334" y="554.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">Gemma 分词 / 长度 64</text>
+</g>
+<g data-diagram-box="true">
+<rect x="394.6666666666667" y="492" width="330.6666666666667" height="88" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="560.0" y="530.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">文本 Transformer</text>
+<text x="560.0" y="554.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">多语言序列编码</text>
+</g>
+<path d="M366.6666666666667 536.0 L391.6666666666667 536.0" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<g data-diagram-box="true">
+<rect x="753.3333333333334" y="492" width="330.6666666666667" height="88" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="918.6666666666667" y="530.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">全局汇聚 / 归一化</text>
+<text x="918.6666666666667" y="554.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">文本向量 v</text>
+</g>
+<path d="M725.3333333333334 536.0 L750.3333333333334 536.0" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="36" y="628" width="1048" height="99" rx="10" fill="#ffffff" stroke="#c7d2c7" stroke-width="1.5"/>
+<text x="56" y="659" font-size="21" text-anchor="start" fill="#24352d" font-weight="700">训练目标在正文下一张图展开</text>
+<text x="56" y="709" font-size="15" text-anchor="start" fill="#64716a" font-weight="400">全局图文向量接受 Sigmoid 监督；LocCa 与视觉自监督帮助学习更好的局部表示。</text>
+<text x="36" y="767" font-size="15" text-anchor="start" fill="#64716a" font-weight="400">NaFlex 中还需传递位置与有效 Token 掩码；结构可兼容不代表新旧权重的向量空间相同。</text>
+</g>
+</svg>

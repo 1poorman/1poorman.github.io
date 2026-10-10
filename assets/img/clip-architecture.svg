@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="640" viewBox="0 0 1120 640" role="img" aria-labelledby="title desc">
+<title id="title">CLIP · 双编码器与双向对比学习</title><desc id="desc">以原始 ViT 图像分支为例；两种模态独立编码后进入共同空间。</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#286447"/></marker><marker id="aux-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#865d79"/></marker></defs>
+<rect width="1120" height="640" rx="18" fill="#f8f9f5"/>
+<g font-family="Arial, Noto Sans CJK SC, sans-serif" fill="#24352d">
+<text x="36" y="45" font-size="26" text-anchor="start" fill="#24352d" font-weight="700">CLIP · 双编码器与双向对比学习</text>
+<text x="36" y="76" font-size="16" text-anchor="start" fill="#64716a" font-weight="400">以原始 ViT 图像分支为例；两种模态独立编码后进入共同空间。</text>
+<g data-diagram-box="true">
+<rect x="36" y="130" width="140" height="78" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="106.0" y="175.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">图像 I</text>
+</g>
+<g data-diagram-box="true">
+<rect x="210" y="118" width="250" height="102" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="335.0" y="163.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">视觉 Transformer</text>
+<text x="335.0" y="187.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">Patch / 位置编码 / CLS</text>
+</g>
+<g data-diagram-box="true">
+<rect x="494" y="130" width="162" height="78" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="575.0" y="163.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">线性投影</text>
+<text x="575.0" y="187.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">L2 归一化</text>
+</g>
+<g data-diagram-box="true">
+<rect x="690" y="130" width="126" height="78" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="753.0" y="163.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">图像向量 U</text>
+<text x="753.0" y="187.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">N × d</text>
+</g>
+<path d="M176 169 L207 169" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M460 169 L491 169" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M656 169 L687 169" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<g data-diagram-box="true">
+<rect x="36" y="290" width="140" height="78" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="106.0" y="335.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">文本 T</text>
+</g>
+<g data-diagram-box="true">
+<rect x="210" y="278" width="250" height="102" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="335.0" y="323.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">文本 Transformer</text>
+<text x="335.0" y="347.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">因果注意力 / EOS 汇聚</text>
+</g>
+<g data-diagram-box="true">
+<rect x="494" y="290" width="162" height="78" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="575.0" y="323.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">线性投影</text>
+<text x="575.0" y="347.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">L2 归一化</text>
+</g>
+<g data-diagram-box="true">
+<rect x="690" y="290" width="126" height="78" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="753.0" y="323.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">文本向量 V</text>
+<text x="753.0" y="347.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">N × d</text>
+</g>
+<path d="M176 329 L207 329" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M460 329 L491 329" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M656 329 L687 329" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<g data-diagram-box="true">
+<rect x="866" y="211" width="218" height="114" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="975.0" y="250.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">相似度矩阵 S</text>
+<text x="975.0" y="274.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">S = a · U Vᵀ</text>
+<text x="975.0" y="298.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">a 为可学习正缩放</text>
+</g>
+<path d="M816 169 L841 169 L841 241 L863 241" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M816 329 L841 329 L841 294 L863 294" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="36" y="425" width="1048" height="146" rx="10" fill="#ffffff" stroke="#c7d2c7" stroke-width="1.5"/>
+<text x="56" y="456" font-size="21" text-anchor="start" fill="#24352d" font-weight="700">训练监督</text>
+<g data-diagram-box="true">
+<rect x="230" y="465" width="326" height="78" rx="10" fill="#fff4db" stroke="#dfc78d" stroke-width="1.5"/>
+<text x="393.0" y="498.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">配对标签</text>
+<text x="393.0" y="522.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">对角线为正确图文对</text>
+</g>
+<g data-diagram-box="true">
+<rect x="622" y="465" width="440" height="78" rx="10" fill="#fff4db" stroke="#dfc78d" stroke-width="1.5"/>
+<text x="842.0" y="498.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">双向交叉熵</text>
+<text x="842.0" y="522.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">行：图 → 文；列：文 → 图</text>
+</g>
+<path d="M556 504 L619 504" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M975 325 L975 462" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="36" y="617" font-size="15" text-anchor="start" fill="#64716a" font-weight="400">推理保留双编码器与向量相似度；原始 CLIP 另有 ResNet 图像分支。</text>
+</g>
+</svg>

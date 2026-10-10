@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="894" viewBox="0 0 1120 894" role="img" aria-labelledby="title desc">
+<title id="title">BLIP-2 · Q-Former 与两阶段预训练</title><desc id="desc">蓝色为冻结模块；第一阶段学习图文表示，第二阶段连接冻结语言模型。</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#286447"/></marker><marker id="aux-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#865d79"/></marker></defs>
+<rect width="1120" height="894" rx="18" fill="#f8f9f5"/>
+<g font-family="Arial, Noto Sans CJK SC, sans-serif" fill="#24352d">
+<text x="36" y="45" font-size="26" text-anchor="start" fill="#24352d" font-weight="700">BLIP-2 · Q-Former 与两阶段预训练</text>
+<text x="36" y="76" font-size="16" text-anchor="start" fill="#64716a" font-weight="400">蓝色为冻结模块；第一阶段学习图文表示，第二阶段连接冻结语言模型。</text>
+<g data-diagram-box="true">
+<rect x="36.0" y="113" width="230.66666666666666" height="70" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="151.33333333333331" y="154.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">输入图像</text>
+</g>
+<g data-diagram-box="true">
+<rect x="294.66666666666663" y="113" width="230.66666666666666" height="70" rx="10" fill="#eaf0f8" stroke="#b8cadd" stroke-width="1.5"/>
+<text x="409.99999999999994" y="142.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">视觉编码器</text>
+<text x="409.99999999999994" y="166.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">冻结 ViT</text>
+</g>
+<path d="M266.66666666666663 148.0 L291.66666666666663 148.0" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<g data-diagram-box="true">
+<rect x="553.3333333333333" y="113" width="230.66666666666666" height="70" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="668.6666666666666" y="142.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">视觉 Token H</text>
+<text x="668.6666666666666" y="166.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">示例：257 × 1024</text>
+</g>
+<path d="M525.3333333333333 148.0 L550.3333333333333 148.0" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="36" y="231" width="748" height="351" rx="10" fill="#ffffff" stroke="#c7d2c7" stroke-width="1.5"/>
+<text x="56" y="262" font-size="20" text-anchor="start" fill="#24352d" font-weight="700">第一阶段 · 可训练 Q-Former（单个重复模块示意）</text>
+<g data-diagram-box="true">
+<rect x="56" y="288" width="188" height="64" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="150.0" y="314.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">可学习 Query</text>
+<text x="150.0" y="338.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">论文：32 × 768</text>
+</g>
+<g data-diagram-box="true">
+<rect x="278" y="288" width="254" height="64" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="405.0" y="314.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">共享 Self-Attention</text>
+<text x="405.0" y="338.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">Q / T 可见性由掩码控制</text>
+</g>
+<g data-diagram-box="true">
+<rect x="568" y="288" width="192" height="64" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="664.0" y="314.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">文本 Token</text>
+<text x="664.0" y="338.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">ITC / ITM / ITG</text>
+</g>
+<path d="M244 320 L275 320" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M568 320 L535 320" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<g data-diagram-box="true">
+<rect x="278" y="386" width="254" height="64" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="405.0" y="412.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">视觉 Cross-Attention</text>
+<text x="405.0" y="436.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">仅 Query 读取 H</text>
+</g>
+<path d="M405 352 L405 383" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M659 183 L659 209 L799 209 L799 367 L547 367 L547 418 L535 418" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<g data-diagram-box="true">
+<rect x="278" y="481" width="254" height="54" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="405.0" y="514.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">前馈网络 FFN</text>
+</g>
+<path d="M405 450 L405 478" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<g data-diagram-box="true">
+<rect x="568" y="475" width="192" height="64" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="664.0" y="501.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">输出 Query Z</text>
+<text x="664.0" y="525.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">压缩视觉信息</text>
+</g>
+<path d="M532 507 L565 507" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="56" y="562" font-size="15" text-anchor="start" fill="#64716a" font-weight="400">Self-Attention / FFN 堆叠；视觉交叉注意力每隔一个 Block 插入。</text>
+<rect x="820" y="231" width="264" height="351" rx="10" fill="#ffffff" stroke="#c7d2c7" stroke-width="1.5"/>
+<text x="840" y="263" font-size="20" text-anchor="start" fill="#24352d" font-weight="700">第一阶段的监督</text>
+<g data-diagram-box="true">
+<rect x="840" y="285" width="224" height="72" rx="10" fill="#fff4db" stroke="#dfc78d" stroke-width="1.5"/>
+<text x="952.0" y="315.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">ITC：独立对齐</text>
+<text x="952.0" y="339.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">Query 与文本互不可见</text>
+</g>
+<g data-diagram-box="true">
+<rect x="840" y="384" width="224" height="72" rx="10" fill="#fff4db" stroke="#dfc78d" stroke-width="1.5"/>
+<text x="952.0" y="414.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">ITM：图文匹配</text>
+<text x="952.0" y="438.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">Query 与文本双向可见</text>
+</g>
+<g data-diagram-box="true">
+<rect x="840" y="483" width="224" height="72" rx="10" fill="#fff4db" stroke="#dfc78d" stroke-width="1.5"/>
+<text x="952.0" y="513.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">ITG：条件生成</text>
+<text x="952.0" y="537.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">文本读 Query 与前文</text>
+</g>
+<rect x="36" y="626" width="1048" height="193" rx="10" fill="#ffffff" stroke="#c7d2c7" stroke-width="1.5"/>
+<text x="56" y="657" font-size="21" text-anchor="start" fill="#24352d" font-weight="700">第二阶段 · 视觉软提示连接语言模型</text>
+<text x="56" y="801" font-size="15" text-anchor="start" fill="#64716a" font-weight="400">只更新 Q-Former 与投影；冻结 LLM 仍需向前面的视觉提示传递训练梯度。</text>
+<g data-diagram-box="true">
+<rect x="56.0" y="683" width="179.2" height="77" rx="10" fill="#eaf0f8" stroke="#b8cadd" stroke-width="1.5"/>
+<text x="145.6" y="727.5" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">视觉编码器</text>
+</g>
+<g data-diagram-box="true">
+<rect x="263.2" y="683" width="179.2" height="77" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="352.79999999999995" y="715.5" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">Q-Former</text>
+<text x="352.79999999999995" y="739.5" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">输出 Z</text>
+</g>
+<path d="M235.2 721.5 L260.2 721.5" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<g data-diagram-box="true">
+<rect x="470.4" y="683" width="179.2" height="77" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="560.0" y="715.5" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">线性投影</text>
+<text x="560.0" y="739.5" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">适配 LLM 维度</text>
+</g>
+<path d="M442.4 721.5 L467.4 721.5" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<g data-diagram-box="true">
+<rect x="677.5999999999999" y="683" width="179.2" height="77" rx="10" fill="#eaf0f8" stroke="#b8cadd" stroke-width="1.5"/>
+<text x="767.1999999999999" y="715.5" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">语言模型</text>
+<text x="767.1999999999999" y="739.5" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">另接文本提示</text>
+</g>
+<path d="M649.5999999999999 721.5 L674.5999999999999 721.5" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<g data-diagram-box="true">
+<rect x="884.8" y="683" width="179.2" height="77" rx="10" fill="#fff4db" stroke="#dfc78d" stroke-width="1.5"/>
+<text x="974.4" y="727.5" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">生成损失</text>
+</g>
+<path d="M856.8 721.5 L881.8 721.5" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="36" y="871" font-size="15" text-anchor="start" fill="#64716a" font-weight="400">第一阶段文本路径与第二阶段视觉提示路径不同；层数、Query 数和形状以具体权重为准。</text>
+</g>
+</svg>

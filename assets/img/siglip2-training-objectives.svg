@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="622" viewBox="0 0 1120 622" role="img" aria-labelledby="title desc">
+  <title id="title">SigLIP 2 的全局图文目标与视觉辅助监督</title>
+  <desc id="desc">图像和文本编码器形成全局向量，以 Sigmoid 损失对齐。视觉特征还接受 LocCa 描述与定位、自蒸馏和掩码预测监督。辅助监督用于训练，部署保留编码器及其全局或稠密特征。</desc>
+  <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#286447"/></marker></defs>
+  <rect width="1120" height="622" rx="18" fill="#f8f9f5"/>
+  <g font-family="Arial, 'Noto Sans CJK SC', sans-serif" fill="#24352d">
+    <text x="36" y="45" font-size="25" font-weight="700">SigLIP 2 · 训练中增加监督，部署时保留表示</text>
+    <text x="36" y="74" font-size="15" fill="#64716a">固定分辨率主要路线：图文语义对齐 + 局部视觉学习</text>
+    <g fill="#fff" stroke="#c7d2c7" stroke-width="1.5">
+      <rect x="36" y="130" width="154" height="62" rx="9"/>
+      <rect x="36" y="230" width="154" height="62" rx="9"/>
+      <rect x="225" y="130" width="190" height="62" rx="9"/>
+      <rect x="225" y="230" width="190" height="62" rx="9"/>
+      <rect x="470" y="130" width="190" height="62" rx="9"/>
+      <rect x="470" y="230" width="190" height="62" rx="9"/>
+      <rect x="744" y="178" width="340" height="68" rx="9" fill="#edf3e9"/>
+      <rect x="36" y="380" width="326" height="88" rx="9"/>
+      <rect x="397" y="380" width="326" height="88" rx="9"/>
+      <rect x="758" y="380" width="326" height="88" rx="9"/>
+    </g>
+    <g text-anchor="middle" font-size="18">
+      <text x="113" y="169">图像</text>
+      <text x="113" y="269">文本</text>
+      <text x="320" y="169">图像编码器</text>
+      <text x="320" y="269">文本编码器</text>
+      <text x="565" y="157">池化后的图像向量</text>
+      <text x="565" y="181" font-size="13" fill="#64716a">全局语义</text>
+      <text x="565" y="257">全局文本向量</text>
+      <text x="565" y="281" font-size="13" fill="#64716a">多语言监督</text>
+      <text x="914" y="207" font-weight="700">图文 Sigmoid 损失</text>
+      <text x="914" y="233" font-size="14" fill="#64716a">匹配对靠近，不匹配对分离</text>
+      <text x="199" y="414" font-weight="700">LocCa 解码器监督</text>
+      <text x="199" y="445" font-size="14" fill="#64716a">整图描述 / 区域描述 / 指代定位</text>
+      <text x="560" y="414" font-weight="700">局部到全局自蒸馏</text>
+      <text x="560" y="445" font-size="14" fill="#64716a">局部学生视图 → 整图 EMA 教师</text>
+      <text x="921" y="414" font-weight="700">掩码 Patch 预测</text>
+      <text x="921" y="445" font-size="14" fill="#64716a">遮挡位置 → 教师的局部表征</text>
+    </g>
+    <g fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)">
+      <path d="M190 161H223"/><path d="M190 261H223"/>
+      <path d="M415 161H468"/><path d="M415 261H468"/>
+      <path d="M660 161H706V195H742"/><path d="M660 261H706V229H742"/>
+    </g>
+    <text x="36" y="337" font-size="16" font-weight="700">来自视觉特征的辅助监督</text>
+    <g fill="none" stroke="#286447" stroke-width="2" stroke-dasharray="5 5">
+      <path d="M438 161V355H199V378" marker-end="url(#arrow)"/>
+      <path d="M438 355H560V378" marker-end="url(#arrow)"/>
+      <path d="M560 355H921V378" marker-end="url(#arrow)"/>
+    </g>
+    <text x="397" y="490" font-size="13" fill="#64716a">这两项视觉自监督在训练最后 20% 加入。</text>
+    <rect x="36" y="515" width="1048" height="82" rx="10" fill="#edf3e9" stroke="#cddcc8"/>
+    <text x="56" y="549" font-size="19" font-weight="700">部署：全局向量用于检索；未池化视觉特征可用于下游稠密任务。</text>
+    <text x="56" y="579" font-size="14" fill="#64716a">辅助解码器与教师不随编码器部署；定位、分割等输出仍需要相应任务头或系统。</text>
+  </g>
+</svg>

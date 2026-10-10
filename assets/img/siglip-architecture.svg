@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="644" viewBox="0 0 1120 644" role="img" aria-labelledby="title desc">
+<title id="title">SigLIP · 双编码器与成对 Sigmoid 目标</title><desc id="desc">全局嵌入仍做 L2 归一化；改变的是训练损失中的候选耦合方式。</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#286447"/></marker><marker id="aux-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#865d79"/></marker></defs>
+<rect width="1120" height="644" rx="18" fill="#f8f9f5"/>
+<g font-family="Arial, Noto Sans CJK SC, sans-serif" fill="#24352d">
+<text x="36" y="45" font-size="26" text-anchor="start" fill="#24352d" font-weight="700">SigLIP · 双编码器与成对 Sigmoid 目标</text>
+<text x="36" y="76" font-size="16" text-anchor="start" fill="#64716a" font-weight="400">全局嵌入仍做 L2 归一化；改变的是训练损失中的候选耦合方式。</text>
+<g data-diagram-box="true">
+<rect x="36" y="126" width="142" height="80" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="107.0" y="172.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">图像 I</text>
+</g>
+<g data-diagram-box="true">
+<rect x="213" y="116" width="256" height="100" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="341.0" y="160.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">视觉 Transformer</text>
+<text x="341.0" y="184.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">Patch 特征 → 注意力池化</text>
+</g>
+<g data-diagram-box="true">
+<rect x="504" y="126" width="162" height="80" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="585.0" y="160.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">输出表示</text>
+<text x="585.0" y="184.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">L2 归一化</text>
+</g>
+<g data-diagram-box="true">
+<rect x="701" y="126" width="128" height="80" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="765.0" y="172.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">图像向量 U</text>
+</g>
+<path d="M178 166 L210 166" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M469 166 L501 166" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M666 166 L698 166" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<g data-diagram-box="true">
+<rect x="36" y="282" width="142" height="80" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="107.0" y="328.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">文本 T</text>
+</g>
+<g data-diagram-box="true">
+<rect x="213" y="272" width="256" height="100" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="341.0" y="316.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">文本 Transformer</text>
+<text x="341.0" y="340.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">序列编码 → 全局汇聚</text>
+</g>
+<g data-diagram-box="true">
+<rect x="504" y="282" width="162" height="80" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="585.0" y="316.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">输出表示</text>
+<text x="585.0" y="340.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">L2 归一化</text>
+</g>
+<g data-diagram-box="true">
+<rect x="701" y="282" width="128" height="80" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="765.0" y="328.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">文本向量 V</text>
+</g>
+<path d="M178 322 L210 322" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M469 322 L501 322" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M666 322 L698 322" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<g data-diagram-box="true">
+<rect x="870" y="204" width="214" height="100" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="977.0" y="236.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">图文 Logit</text>
+<text x="977.0" y="260.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">ℓ = a · U Vᵀ + b</text>
+<text x="977.0" y="284.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">a、b 均可学习</text>
+</g>
+<path d="M829 166 L849 166 L849 229 L867 229" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M829 322 L849 322 L849 279 L867 279" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<g data-diagram-box="true">
+<rect x="36.0" y="446" width="330.6666666666667" height="100" rx="10" fill="#fff4db" stroke="#dfc78d" stroke-width="1.5"/>
+<text x="201.33333333333334" y="490.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">配对标签 zᵢⱼ</text>
+<text x="201.33333333333334" y="514.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">匹配 +1；非匹配 −1</text>
+</g>
+<g data-diagram-box="true">
+<rect x="394.6666666666667" y="446" width="330.6666666666667" height="100" rx="10" fill="#fff4db" stroke="#dfc78d" stroke-width="1.5"/>
+<text x="560.0" y="490.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">逐对二元损失</text>
+<text x="560.0" y="514.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">−log σ(zᵢⱼ ℓᵢⱼ)</text>
+</g>
+<path d="M366.6666666666667 496.0 L391.6666666666667 496.0" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<g data-diagram-box="true">
+<rect x="753.3333333333334" y="446" width="330.6666666666667" height="100" rx="10" fill="#fff4db" stroke="#dfc78d" stroke-width="1.5"/>
+<text x="918.6666666666667" y="490.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">求和并除以 N</text>
+<text x="918.6666666666667" y="514.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">无需行 / 列 Softmax</text>
+</g>
+<path d="M725.3333333333334 496.0 L750.3333333333334 496.0" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M977 304 L977 397 L560 397 L560 443" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="36" y="621" font-size="15" text-anchor="start" fill="#64716a" font-weight="400">推理仍可独立编码、缓存向量；分块训练减少存储压力，但仍需要不匹配图文对。</text>
+</g>
+</svg>

@@ -76,6 +76,10 @@ $$
 
 ## 3. YOLOv1 → v3：从统一回归到多尺度检测
 
+[![YOLOv1 的网格回归、YOLOv2 的 Anchor 与 Passthrough、YOLOv3 的多尺度检测架构]({{ '/assets/img/yolo-v1-v3-architecture.svg' | relative_url }})]({{ '/assets/img/yolo-v1-v3-architecture.svg' | relative_url }})
+
+*按 [v1][v1]、[v2][v2]、[v3][v3] 原论文重绘的主要结构，省略重复卷积层。本文架构图均可点击查看原尺寸。*
+
 ### 3.1 YOLOv1：一次看整张图，联合预测位置和类别
 
 [YOLOv1 原论文][v1]将图像划成 $S\times S$ 网格。目标中心落在哪个网格，该网格就负责预测该目标。每个网格预测 $B$ 个框及其置信度，并共享一组类别概率，输出规模为：
@@ -128,6 +132,10 @@ YOLO9000 的额外贡献是 WordTree：将类别组织为层次树，利用检�
 
 ## 4. YOLOv4 / v5：从单个模块创新到整套系统优化
 
+[![YOLOv4 与后期 YOLOv5 的 Backbone、SPP 或 SPPF、多尺度 Neck 和 CSP 分流架构]({{ '/assets/img/yolo-v4-v5-architecture.svg' | relative_url }})]({{ '/assets/img/yolo-v4-v5-architecture.svg' | relative_url }})
+
+*依据 [YOLOv4][v4] 与 [YOLOv5 发布记录][v5]整理。v5 展示采用 C3／SPPF 的代表配置；下方 CSP 图是分流与聚合原理，不是所有 CSP 变体的逐层定义。*
+
 ### 4.1 CSP 为什么能减少重复计算
 
 [YOLOv4][v4]采用 CSPDarknet53。CSP 将输入通道分成两条路径：一部分经过较重的变换，另一部分保留较短路径，最后融合。
@@ -160,6 +168,10 @@ YOLOv5 以 PyTorch 工程体系推动了易用训练、自动 Anchor 检查、�
 C3 延续 CSP 思想，通过分流、瓶颈变换和融合组织特征。YOLOv5 并没有仅靠一个“新检测公式”完成升级；它更能说明训练配方、实现细节、部署支持和结构设计共同决定工程价值。具体演进可查 [YOLOv5 官方 release 记录][v5]。
 
 ## 5. YOLOX / v6 / v7：分配、解耦和重参数化
+
+[![YOLOX 解耦头、YOLOv6 高效部署结构和 YOLOv7 主辅助头的架构对照]({{ '/assets/img/yolox-v6-v7-architecture.svg' | relative_url }})]({{ '/assets/img/yolox-v6-v7-architecture.svg' | relative_url }})
+
+*依据 [YOLOX][yolox]、[YOLOv6][v6]、[YOLOv7][v7] 的作者资料整理。虚线表示训练辅助关系；锚框辅助和 Auxiliary Head 只对应相应版本／配置。*
 
 ### 5.1 解耦头：分类要看语义，回归要看边界
 
@@ -210,6 +222,10 @@ Anchor-Aided Training 则允许训练时保留提供辅助监督的 Anchor-based
 
 ## 6. YOLOv8：Anchor-free、任务对齐与分布式框回归
 
+[![YOLOv8 的 C2f Backbone、多尺度融合、分类分支与 DFL 框回归分支]({{ '/assets/img/yolo-v8-architecture.svg' | relative_url }})]({{ '/assets/img/yolo-v8-architecture.svg' | relative_url }})
+
+*依据 [YOLOv8 官方说明与实现][v8]重绘。图中的解耦预测结构在各尺度重复；标签分配和 DFL 损失用于训练，分布期望用于框解码。*
+
 ### 6.1 C2f 与 Anchor-free 并非同一层面的变化
 
 YOLOv8 的 C2f 通过较轻的分流与多个瓶颈输出拼接，保留不同深度的特征和梯度路径。Anchor-free 则是输出表示与分配方式的变化，不要求预测围绕预设宽高模板。
@@ -258,6 +274,10 @@ DFL 与 IoU 类损失分工不同：DFL 约束各边的分布，IoU 类损失约
 
 ## 7. YOLOv9 / v10：改善梯度，与改变输出集合
 
+[![YOLOv9 PGI 辅助路径、YOLOv10 一致双分配和 YOLO26 DFL-free 双头架构]({{ '/assets/img/yolo-v9-v10-v26-architecture.svg' | relative_url }})]({{ '/assets/img/yolo-v9-v10-v26-architecture.svg' | relative_url }})
+
+*依据 [YOLOv9][v9]、[YOLOv10][v10] 和 [YOLO26 配置][v26-config]整理，放在一起比较训练图与部署路径。YOLO26 的训练配方在第 9 节展开。*
+
 ### 7.1 PGI：给深层网络提供更可靠的学习信号
 
 网络不断压缩和变换特征，可能丢失与目标任务有关的信息。[YOLOv9][v9]提出 PGI，通过辅助可逆分支和多层级辅助信息，为主网络提供更有用的梯度。
@@ -295,6 +315,10 @@ GELAN 负责高效的层聚合架构；PGI 负责训练中的梯度信息设计�
 结构侧还包括轻量分类头、空间／通道解耦下采样、按冗余程度设计模块、大核卷积和部分自注意力。这些改动一起服务于精度与真实推理延迟的平衡。
 
 ## 8. YOLO11 / v12 / v13：从局部特征到高阶关系
+
+[![YOLO11 C2PSA、YOLOv12 Area Attention 和 YOLOv13 HyperACE 与 FullPAD 的结构关系]({{ '/assets/img/yolo-v11-v13-architecture.svg' | relative_url }})]({{ '/assets/img/yolo-v11-v13-architecture.svg' | relative_url }})
+
+*依据 [YOLO11 配置][v11-config]、[YOLOv12 说明][v12] 与 [YOLOv13 作者仓库][v13]整理。该图突出各分支的关键模块，区域注意力与超图信息流不代表完整网络的逐层配置。*
 
 ### 8.1 YOLO11：在成熟检测框架内调整模块
 

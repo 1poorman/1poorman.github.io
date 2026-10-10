@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="734" viewBox="0 0 1120 734" role="img" aria-labelledby="title desc">
+<title id="title">YOLOv8 · C2f、解耦头与分布式框回归</title><desc id="desc">示意常见目标检测配置；不使用预设 Anchor 宽高，也不单列 Objectness 输出。</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#286447"/></marker><marker id="aux-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#865d79"/></marker></defs>
+<rect width="1120" height="734" rx="18" fill="#f8f9f5"/>
+<g font-family="Arial, Noto Sans CJK SC, sans-serif" fill="#24352d">
+<text x="36" y="45" font-size="26" text-anchor="start" fill="#24352d" font-weight="700">YOLOv8 · C2f、解耦头与分布式框回归</text>
+<text x="36" y="76" font-size="16" text-anchor="start" fill="#64716a" font-weight="400">示意常见目标检测配置；不使用预设 Anchor 宽高，也不单列 Objectness 输出。</text>
+<g data-diagram-box="true">
+<rect x="56.0" y="124" width="231.0" height="86" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="171.5" y="173.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">输入图像</text>
+</g>
+<g data-diagram-box="true">
+<rect x="315.0" y="124" width="231.0" height="86" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="430.5" y="161.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">Conv + C2f</text>
+<text x="430.5" y="185.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">Backbone</text>
+</g>
+<path d="M287.0 167.0 L312.0 167.0" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<g data-diagram-box="true">
+<rect x="574.0" y="124" width="231.0" height="86" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="689.5" y="161.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">SPPF</text>
+<text x="689.5" y="185.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">深层上下文</text>
+</g>
+<path d="M546.0 167.0 L571.0 167.0" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<g data-diagram-box="true">
+<rect x="833.0" y="124" width="231.0" height="86" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="948.5" y="161.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">FPN / PAN + C2f</text>
+<text x="948.5" y="185.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">P3 / P4 / P5</text>
+</g>
+<path d="M805.0 167.0 L830.0 167.0" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<g data-diagram-box="true">
+<rect x="36" y="308" width="250" height="110" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="161.0" y="345.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">每个尺度的特征</text>
+<text x="161.0" y="369.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">stride 8 / 16 / 32</text>
+<text x="161.0" y="393.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">下方结构在各尺度重复</text>
+</g>
+<g data-diagram-box="true">
+<rect x="365" y="268" width="264" height="82" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="497.0" y="303.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">分类卷积分支</text>
+<text x="497.0" y="327.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">输出 C 个类别分数</text>
+</g>
+<g data-diagram-box="true">
+<rect x="365" y="402" width="264" height="106" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="497.0" y="437.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">框回归卷积分支</text>
+<text x="497.0" y="461.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">四条边的离散分布</text>
+<text x="497.0" y="485.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">常见 reg_max = 16</text>
+</g>
+<path d="M286 363 L326 363 L326 309 L362 309" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M326 363 L326 455 L362 455" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<g data-diagram-box="true">
+<rect x="720" y="268" width="364" height="82" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="902.0" y="303.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">分类分数</text>
+<text x="902.0" y="327.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">与解码后的框组成检测候选</text>
+</g>
+<g data-diagram-box="true">
+<rect x="720" y="402" width="364" height="106" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="902.0" y="437.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">Softmax + 期望解码</text>
+<text x="902.0" y="461.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">参考点 → l / t / r / b</text>
+<text x="902.0" y="485.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">距离 × stride → 边界框</text>
+</g>
+<path d="M629 309 L717 309" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M629 455 L717 455" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M937 210 L937 237 L161 237 L161 305" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="36" y="554" width="1048" height="117" rx="10" fill="#ffffff" stroke="#c7d2c7" stroke-width="1.5"/>
+<text x="56" y="585" font-size="21" text-anchor="start" fill="#24352d" font-weight="700">仅训练：TAL 分配正样本，分类 BCE + IoU 类损失 + DFL</text>
+<text x="56" y="653" font-size="15" text-anchor="start" fill="#64716a" font-weight="400">推理：将各尺度的类别与框合并，按阈值筛选，再执行相应 NMS。</text>
+<text x="36" y="711" font-size="15" text-anchor="start" fill="#64716a" font-weight="400">DFL 约束四条边的分布，IoU 类损失约束整体框；层宽、reg_max 与任务配置应单独核对。</text>
+</g>
+</svg>

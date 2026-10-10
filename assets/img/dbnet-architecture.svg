@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="700" viewBox="0 0 1120 700" role="img" aria-labelledby="title desc">
+<title id="title">DBNet · 概率图、阈值图与可微二值化</title><desc id="desc">文本检测按像素分割学习；训练与部署使用的分支不同。</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#286447"/></marker><marker id="aux-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#865d79"/></marker></defs>
+<rect width="1120" height="700" rx="18" fill="#f8f9f5"/>
+<g font-family="Arial, Noto Sans CJK SC, sans-serif" fill="#24352d">
+<text x="36" y="45" font-size="26" text-anchor="start" fill="#24352d" font-weight="700">DBNet · 概率图、阈值图与可微二值化</text>
+<text x="36" y="76" font-size="16" text-anchor="start" fill="#64716a" font-weight="400">文本检测按像素分割学习；训练与部署使用的分支不同。</text>
+<g data-diagram-box="true">
+<rect x="56.0" y="123" width="231.0" height="82" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="171.5" y="170.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">输入图像</text>
+</g>
+<g data-diagram-box="true">
+<rect x="315.0" y="123" width="231.0" height="82" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="430.5" y="158.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">Backbone</text>
+<text x="430.5" y="182.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">多层视觉特征</text>
+</g>
+<path d="M287.0 164.0 L312.0 164.0" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<g data-diagram-box="true">
+<rect x="574.0" y="123" width="231.0" height="82" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="689.5" y="158.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">FPN 类融合</text>
+<text x="689.5" y="182.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">统一并融合空间特征</text>
+</g>
+<path d="M546.0 164.0 L571.0 164.0" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<g data-diagram-box="true">
+<rect x="833.0" y="123" width="231.0" height="82" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="948.5" y="170.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">融合特征 F</text>
+</g>
+<path d="M805.0 164.0 L830.0 164.0" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<g data-diagram-box="true">
+<rect x="56" y="306" width="270" height="80" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="191.0" y="340.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">概率预测分支</text>
+<text x="191.0" y="364.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">P：像素为文本的概率</text>
+</g>
+<g data-diagram-box="true">
+<rect x="412" y="306" width="270" height="80" rx="10" fill="#f7edf3" stroke="#d8bdcd" stroke-width="1.5" stroke-dasharray="6 4"/>
+<text x="547.0" y="340.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">阈值预测分支</text>
+<text x="547.0" y="364.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">T：可学习局部阈值</text>
+</g>
+<g data-diagram-box="true">
+<rect x="764" y="306" width="300" height="80" rx="10" fill="#f7edf3" stroke="#d8bdcd" stroke-width="1.5" stroke-dasharray="6 4"/>
+<text x="914.0" y="340.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">近似二值图 B̂</text>
+<text x="914.0" y="364.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">σ(k · (P − T))</text>
+</g>
+<path d="M938 205 L938 249 L191 249 L191 303" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M547 249 L547 303" fill="none" stroke="#865d79" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#aux-arrow)"/>
+<path d="M682 346 L761 346" fill="none" stroke="#865d79" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#aux-arrow)"/>
+<path d="M326 366 L355 366 L355 418 L914 418 L914 389" fill="none" stroke="#865d79" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#aux-arrow)"/>
+<rect x="36" y="467" width="1048" height="169" rx="10" fill="#ffffff" stroke="#c7d2c7" stroke-width="1.5"/>
+<text x="56" y="498" font-size="21" text-anchor="start" fill="#24352d" font-weight="700">常见部署路径</text>
+<text x="56" y="618" font-size="15" text-anchor="start" fill="#64716a" font-weight="400">后处理阈值与 unclip 为推理参数，不是训练中阈值图 T 的直接替代标签。</text>
+<g data-diagram-box="true">
+<rect x="56.0" y="519" width="231.0" height="74" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="171.5" y="562.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">概率图 P</text>
+</g>
+<g data-diagram-box="true">
+<rect x="315.0" y="519" width="231.0" height="74" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="430.5" y="550.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">固定阈值 / 轮廓</text>
+<text x="430.5" y="574.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">形成文本连通区域</text>
+</g>
+<path d="M287.0 556.0 L312.0 556.0" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<g data-diagram-box="true">
+<rect x="574.0" y="519" width="231.0" height="74" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="689.5" y="550.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">Unclip 扩张</text>
+<text x="689.5" y="574.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">恢复文字区域边界</text>
+</g>
+<path d="M546.0 556.0 L571.0 556.0" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<g data-diagram-box="true">
+<rect x="833.0" y="519" width="231.0" height="74" rx="10" fill="#fff4db" stroke="#dfc78d" stroke-width="1.5"/>
+<text x="948.5" y="562.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">文本框 / 多边形</text>
+</g>
+<path d="M805.0 556.0 L830.0 556.0" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M191 386 L191 442 L26 442 L26 556 L53 556" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="36" y="677" font-size="15" text-anchor="start" fill="#64716a" font-weight="400">紫色分支用于训练；概率、阈值与近似二值图各有监督，具体损失随 PP-OCR 版本变化。</text>
+</g>
+</svg>

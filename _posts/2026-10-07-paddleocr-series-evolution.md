@@ -65,6 +65,10 @@ PP-OCRv4、v5 的 mobile/server，以及 v6 的 tiny/small/medium，不应混成
 
 ### 2.2 DB：为什么“可微二值化”对文字边界有帮助
 
+[![DBNet 概率分支、阈值分支、可微二值化和推理时文本区域后处理架构]({{ '/assets/img/dbnet-architecture.svg' | relative_url }})]({{ '/assets/img/dbnet-architecture.svg' | relative_url }})
+
+*依据 [DBNet 原论文][db]重绘。紫色虚线标出训练辅助分支，底部是常见部署路径。本文架构图均可点击查看原尺寸。*
+
 [DBNet][db]把文本检测看作分割问题。网络预测文字概率图 $P$，同时学习阈值图 $T$，用可微函数近似硬阈值操作：
 
 $$
@@ -175,6 +179,10 @@ $$
 
 ## 4. PP-OCRv3：把 Transformer 上下文能力做轻
 
+[![PP-OCR 从 CRNN 识别到 SVTR 视觉序列特征及 GTC 辅助解码的架构变化]({{ '/assets/img/ppocr-recognition-architecture.svg' | relative_url }})]({{ '/assets/img/ppocr-recognition-architecture.svg' | relative_url }})
+
+*依据 [初版][ocr1]、[v2][ocr2]、[v3][ocr3]、[v4][ocr4] 的代表性轻量识别路线整理。CTC 与辅助解码器共享视觉特征；辅助生成分支无需保留在最终推理图中。*
+
 ### 4.1 检测侧：教师更强，学生仍然要快
 
 [官方 v3 说明][ocr3]列出了 LK-PAN、DML 与 RSE-FPN：
@@ -246,6 +254,10 @@ Data Filter 同时筛除过于简单的冗余样本和质量很差、难以可�
 
 ### 6.1 服务端和移动端要分别看结构
 
+[![PP-OCRv5 server 检测的 PP-HGNetV2 与 LKPAN，以及识别的 CTC 与 NRTR 分支]({{ '/assets/img/ppocr-v5-server-architecture.svg' | relative_url }})]({{ '/assets/img/ppocr-v5-server-architecture.svg' | relative_url }})
+
+*依据 [PaddleOCR 3.0 技术报告][ocr30]与 [v5 server 检测配置][ocr5-det]整理。该图明确限定为服务端路线，不能直接作为 mobile 的网络结构。*
+
 [PaddleOCR 3.0 技术报告][ocr30]说明：服务端路线采用 PP-HGNetV2，移动端采用 PP-LCNetV3。服务端识别结合 SVTR-HGNet 的高效 CTC 分支与 GTC-NRTR 辅助训练分支。
 
 核对时的[服务端检测配置][ocr5-det]为 PP-HGNetV2、LKPAN 和 PFHeadLocal；不能把轻量版的 RSE-FPN 图套用到所有 v5 模型。
@@ -273,6 +285,10 @@ v5 强化简繁中文、英文、日文、拼音及复杂手写／古籍场景�
 如果输入本来是规范截图，始终开启所有预处理可能只增加耗时。需要几何展平时，还应记录坐标在原图与校正图之间的变换关系，否则识别文字虽正确，回写标注位置却可能错误。
 
 ## 7. PP-OCRv6：统一骨干与更明确的算力分档
+
+[![PP-OCRv6 medium 的 PPLCNetV4、RepLKPAN 检测路线及 LightSVTR 与 CTC 识别路线]({{ '/assets/img/ppocr-v6-architecture.svg' | relative_url }})]({{ '/assets/img/ppocr-v6-architecture.svg' | relative_url }})
+
+*依据 [v6 官方说明][ocr6]、[medium 检测配置][ocr6-det]与[识别配置][ocr6-rec]重绘。两列是独立任务模型；统一骨干家族不表示参数共享。*
 
 ### 7.1 LCNetV4：分开做空间混合和通道混合
 
@@ -323,6 +339,10 @@ LightSVTR 用局部卷积先建模邻近字符，再使用少量全局注意力�
 
 ## 8. PP-Structure：从文本框到可读文档
 
+[![PP-StructureV3 预处理、版面分析、各类区域识别器与文档组装的系统架构]({{ '/assets/img/ppstructure-v3-architecture.svg' | relative_url }})]({{ '/assets/img/ppstructure-v3-architecture.svg' | relative_url }})
+
+*依据 [PP-StructureV3 官方说明][structure3]整理的系统架构。不同区域分派到相应识别模型，再恢复阅读顺序与文档结构。*
+
 ### 8.1 早期阶段到 V3，扩展的是任务范围
 
 早期 PP-Structure 以版面分析、OCR、表格识别为主要组合；V2 进一步完善表格、版面恢复等能力；[PP-StructureV3][structure3]则把预处理、OCR、版面分析、多种文档元素识别和后处理组织成较完整的流水线。
@@ -340,6 +360,10 @@ LightSVTR 用局部卷积先建模邻近字符，再使用少量全局注意力�
 模块化方案的优势是错误可定位、单模块可替换，并能保留较细的文本或单元格坐标；代价是接口复杂、多个模型需协调，并且错误可能逐级传播。
 
 ## 9. PaddleOCR-VL：用视觉语言模型统一元素识别
+
+[![PaddleOCR-VL 的页面区域处理、动态分辨率视觉编码、连接模块和 ERNIE 语言解码架构]({{ '/assets/img/paddleocr-vl-architecture.svg' | relative_url }})]({{ '/assets/img/paddleocr-vl-architecture.svg' | relative_url }})
+
+*依据 [PaddleOCR-VL][vl]、[1.5][vl15]、[1.6][vl16] 的官方说明整理。图中区分元素识别 VLM 与完整解析系统；1.6 延续 1.5 的核心架构，主要升级数据和后训练。*
 
 ### 9.1 动态分辨率解决的不是“图片越大越好”
 

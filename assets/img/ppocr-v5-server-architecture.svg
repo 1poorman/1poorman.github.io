@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="742" viewBox="0 0 1120 742" role="img" aria-labelledby="title desc">
+<title id="title">PP-OCRv5 · 服务端检测与识别结构</title><desc id="desc">以 server 配置为例；mobile 使用 PP-LCNetV3 等轻量结构，不能直接套用本图。</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#286447"/></marker><marker id="aux-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#865d79"/></marker></defs>
+<rect width="1120" height="742" rx="18" fill="#f8f9f5"/>
+<g font-family="Arial, Noto Sans CJK SC, sans-serif" fill="#24352d">
+<text x="36" y="45" font-size="26" text-anchor="start" fill="#24352d" font-weight="700">PP-OCRv5 · 服务端检测与识别结构</text>
+<text x="36" y="76" font-size="16" text-anchor="start" fill="#64716a" font-weight="400">以 server 配置为例；mobile 使用 PP-LCNetV3 等轻量结构，不能直接套用本图。</text>
+<rect x="36" y="111" width="1048" height="177" rx="10" fill="#ffffff" stroke="#c7d2c7" stroke-width="1.5"/>
+<text x="56" y="142" font-size="21" text-anchor="start" fill="#24352d" font-weight="700">文本检测 · PP-OCRv5_server_det</text>
+<text x="56" y="270" font-size="15" text-anchor="start" fill="#64716a" font-weight="400">检测输出文字区域，裁剪校正后再进入识别器。</text>
+<g data-diagram-box="true">
+<rect x="56.0" y="163" width="231.0" height="79" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="171.5" y="196.5" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">整图 → PP-HGNetV2</text>
+<text x="171.5" y="220.5" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">多尺度特征</text>
+</g>
+<g data-diagram-box="true">
+<rect x="315.0" y="163" width="231.0" height="79" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="430.5" y="196.5" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">LKPAN</text>
+<text x="430.5" y="220.5" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">大感受野特征融合</text>
+</g>
+<path d="M287.0 202.5 L312.0 202.5" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<g data-diagram-box="true">
+<rect x="574.0" y="163" width="231.0" height="79" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="689.5" y="196.5" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">PFHeadLocal</text>
+<text x="689.5" y="220.5" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">像素预测 / DB 监督</text>
+</g>
+<path d="M546.0 202.5 L571.0 202.5" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<g data-diagram-box="true">
+<rect x="833.0" y="163" width="231.0" height="79" rx="10" fill="#fff4db" stroke="#dfc78d" stroke-width="1.5"/>
+<text x="948.5" y="196.5" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">文本区域</text>
+<text x="948.5" y="220.5" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">阈值 / 轮廓 / Unclip</text>
+</g>
+<path d="M805.0 202.5 L830.0 202.5" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="36" y="317" width="1048" height="353" rx="10" fill="#ffffff" stroke="#c7d2c7" stroke-width="1.5"/>
+<text x="56" y="348" font-size="21" text-anchor="start" fill="#24352d" font-weight="700">文本识别 · 服务端路线</text>
+<text x="56" y="652" font-size="15" text-anchor="start" fill="#64716a" font-weight="400">GTC-NRTR 在训练中辅助共享视觉特征，最终可仅部署 CTC 路径。</text>
+<g data-diagram-box="true">
+<rect x="56" y="391" width="225" height="102" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="168.5" y="424.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">裁剪后的文本行</text>
+<text x="168.5" y="448.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">PP-HGNetV2</text>
+<text x="168.5" y="472.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">视觉特征提取</text>
+</g>
+<g data-diagram-box="true">
+<rect x="336" y="391" width="277" height="102" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="474.5" y="424.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">SVTR-HGNet 路线</text>
+<text x="474.5" y="448.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">卷积特征与序列混合</text>
+<text x="474.5" y="472.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">保留宽度方向信息</text>
+</g>
+<g data-diagram-box="true">
+<rect x="690" y="373" width="374" height="90" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="877.0" y="412.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">CTC 分支</text>
+<text x="877.0" y="436.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">字符分类 → CTC 解码</text>
+</g>
+<g data-diagram-box="true">
+<rect x="690" y="512" width="374" height="94" rx="10" fill="#f7edf3" stroke="#d8bdcd" stroke-width="1.5" stroke-dasharray="6 4"/>
+<text x="877.0" y="541.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">NRTR 辅助解码分支</text>
+<text x="877.0" y="565.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">自回归序列监督</text>
+<text x="877.0" y="589.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">仅训练</text>
+</g>
+<path d="M281 442 L333 442" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M613 442 L652 442 L652 418 L687 418" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M652 442 L652 559 L687 559" fill="none" stroke="#865d79" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#aux-arrow)"/>
+<text x="56" y="578" font-size="18" text-anchor="start" fill="#24352d" font-weight="400">蒸馏 / 数据构建改变训练监督，</text>
+<text x="56" y="608" font-size="18" text-anchor="start" fill="#24352d" font-weight="400">不要求部署时运行所有教师网络。</text>
+<text x="36" y="719" font-size="15" text-anchor="start" fill="#64716a" font-weight="400">图示来自服务端配置与技术报告；检测、识别各自训练和加载权重。</text>
+</g>
+</svg>

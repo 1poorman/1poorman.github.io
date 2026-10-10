@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="875" viewBox="0 0 1120 875" role="img" aria-labelledby="title desc">
+<title id="title">PP-OCRv6 · 统一骨干家族，分别适配检测与识别</title><desc id="desc">以 medium 配置为例；统一结构设计不代表检测器与识别器共享同一份权重。</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#286447"/></marker><marker id="aux-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#865d79"/></marker></defs>
+<rect width="1120" height="875" rx="18" fill="#f8f9f5"/>
+<g font-family="Arial, Noto Sans CJK SC, sans-serif" fill="#24352d">
+<text x="36" y="45" font-size="26" text-anchor="start" fill="#24352d" font-weight="700">PP-OCRv6 · 统一骨干家族，分别适配检测与识别</text>
+<text x="36" y="76" font-size="16" text-anchor="start" fill="#64716a" font-weight="400">以 medium 配置为例；统一结构设计不代表检测器与识别器共享同一份权重。</text>
+<rect x="36" y="111" width="510" height="647" rx="10" fill="#ffffff" stroke="#c7d2c7" stroke-width="1.5"/>
+<text x="56" y="144" font-size="21" text-anchor="start" fill="#24352d" font-weight="700">检测：二维多尺度输出</text>
+<g data-diagram-box="true">
+<rect x="58" y="181" width="466" height="76" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="291.0" y="213.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">输入整图</text>
+<text x="291.0" y="237.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">文本区域定位</text>
+</g>
+<g data-diagram-box="true">
+<rect x="58" y="286" width="466" height="76" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="291.0" y="318.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">PPLCNetV4</text>
+<text x="291.0" y="342.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">二维下采样 / 多尺度特征</text>
+</g>
+<path d="M291 257 L291 283" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<g data-diagram-box="true">
+<rect x="58" y="391" width="466" height="76" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="291.0" y="423.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">RepLKPAN</text>
+<text x="291.0" y="447.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">大感受野重参数化融合</text>
+</g>
+<path d="M291 362 L291 388" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<g data-diagram-box="true">
+<rect x="58" y="496" width="466" height="76" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="291.0" y="528.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">DB 检测头</text>
+<text x="291.0" y="552.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">概率预测 / DBLoss</text>
+</g>
+<path d="M291 467 L291 493" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<g data-diagram-box="true">
+<rect x="58" y="601" width="466" height="76" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="291.0" y="633.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">文本框 / 多边形</text>
+<text x="291.0" y="657.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">轮廓提取与扩张</text>
+</g>
+<path d="M291 572 L291 598" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<g data-diagram-box="true">
+<rect x="58" y="701" width="466" height="42" rx="10" fill="#f7edf3" stroke="#d8bdcd" stroke-width="1.5" stroke-dasharray="6 4"/>
+<text x="291.0" y="728.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">训练：P2 / P3 / P4 辅助预测头</text>
+</g>
+<rect x="574" y="111" width="510" height="647" rx="10" fill="#ffffff" stroke="#c7d2c7" stroke-width="1.5"/>
+<text x="594" y="144" font-size="21" text-anchor="start" fill="#24352d" font-weight="700">识别：沿宽度形成序列</text>
+<g data-diagram-box="true">
+<rect x="596" y="181" width="466" height="76" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="829.0" y="213.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">裁剪文本行</text>
+<text x="829.0" y="237.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">字符序列识别</text>
+</g>
+<g data-diagram-box="true">
+<rect x="596" y="286" width="466" height="76" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="829.0" y="318.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">PPLCNetV4</text>
+<text x="829.0" y="342.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">非对称下采样 / 保留宽度</text>
+</g>
+<path d="M829 257 L829 283" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<g data-diagram-box="true">
+<rect x="596" y="391" width="466" height="76" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="829.0" y="423.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">LightSVTR</text>
+<text x="829.0" y="447.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">局部混合 + 全局关系</text>
+</g>
+<path d="M829 362 L829 388" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<g data-diagram-box="true">
+<rect x="596" y="496" width="466" height="76" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="829.0" y="528.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">CTC 识别头</text>
+<text x="829.0" y="552.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">字符序列概率</text>
+</g>
+<path d="M829 467 L829 493" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<g data-diagram-box="true">
+<rect x="596" y="601" width="466" height="76" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="829.0" y="633.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">CTCLabelDecode</text>
+<text x="829.0" y="657.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">输出字符串</text>
+</g>
+<path d="M829 572 L829 598" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<g data-diagram-box="true">
+<rect x="596" y="701" width="466" height="42" rx="10" fill="#f7edf3" stroke="#d8bdcd" stroke-width="1.5" stroke-dasharray="6 4"/>
+<text x="829.0" y="728.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">训练：NRTR 辅助解码 / 蒸馏</text>
+</g>
+<text x="36" y="796" font-size="17" text-anchor="start" fill="#24352d" font-weight="400">PPLCNetV4 模块：空间混合（DWConv / SE）+ 通道混合（点卷积扩展 / 压缩）。</text>
+<text x="36" y="852" font-size="15" text-anchor="start" fill="#64716a" font-weight="400">文档称融合组件为 RepLKFPN，medium 配置注册名为 RepLKPAN；tiny / small 的配置另行核对。</text>
+</g>
+</svg>

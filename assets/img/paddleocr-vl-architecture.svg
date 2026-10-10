@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="808" viewBox="0 0 1120 808" role="img" aria-labelledby="title desc">
+<title id="title">PaddleOCR-VL · 区域组织与视觉语言识别</title><desc id="desc">核心约 0.9B：动态分辨率视觉编码器连接 ERNIE-4.5-0.3B。</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#286447"/></marker><marker id="aux-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#865d79"/></marker></defs>
+<rect width="1120" height="808" rx="18" fill="#f8f9f5"/>
+<g font-family="Arial, Noto Sans CJK SC, sans-serif" fill="#24352d">
+<text x="36" y="45" font-size="26" text-anchor="start" fill="#24352d" font-weight="700">PaddleOCR-VL · 区域组织与视觉语言识别</text>
+<text x="36" y="76" font-size="16" text-anchor="start" fill="#64716a" font-weight="400">核心约 0.9B：动态分辨率视觉编码器连接 ERNIE-4.5-0.3B。</text>
+<rect x="36" y="109" width="1048" height="172" rx="10" fill="#ffffff" stroke="#c7d2c7" stroke-width="1.5"/>
+<text x="56" y="140" font-size="21" text-anchor="start" fill="#24352d" font-weight="700">页面与区域处理</text>
+<g data-diagram-box="true">
+<rect x="56.0" y="162" width="231.0" height="75" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="171.5" y="205.5" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">输入页面</text>
+</g>
+<g data-diagram-box="true">
+<rect x="315.0" y="162" width="231.0" height="75" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="430.5" y="193.5" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">版面定位</text>
+<text x="430.5" y="217.5" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">1.5：PP-DocLayoutV3</text>
+</g>
+<path d="M287.0 199.5 L312.0 199.5" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<g data-diagram-box="true">
+<rect x="574.0" y="162" width="231.0" height="75" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="689.5" y="193.5" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">区域裁剪 / 批处理</text>
+<text x="689.5" y="217.5" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">保留局部细节</text>
+</g>
+<path d="M546.0 199.5 L571.0 199.5" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<g data-diagram-box="true">
+<rect x="833.0" y="162" width="231.0" height="75" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="948.5" y="193.5" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">元素图像</text>
+<text x="948.5" y="217.5" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">文本 / 表格 / 公式等</text>
+</g>
+<path d="M805.0 199.5 L830.0 199.5" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="36" y="315" width="1048" height="292" rx="10" fill="#ffffff" stroke="#c7d2c7" stroke-width="1.5"/>
+<text x="56" y="346" font-size="21" text-anchor="start" fill="#24352d" font-weight="700">元素级视觉语言模型</text>
+<g data-diagram-box="true">
+<rect x="56" y="392" width="250" height="96" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="181.0" y="422.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">NaViT 风格视觉编码</text>
+<text x="181.0" y="446.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">动态分辨率 / Patch Token</text>
+<text x="181.0" y="470.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">保留形状与细节</text>
+</g>
+<g data-diagram-box="true">
+<rect x="363" y="392" width="227" height="96" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="476.5" y="434.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">视觉连接模块</text>
+<text x="476.5" y="458.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">映射到语言输入空间</text>
+</g>
+<g data-diagram-box="true">
+<rect x="650" y="378" width="414" height="82" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="857.0" y="413.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">ERNIE-4.5-0.3B</text>
+<text x="857.0" y="437.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">视觉条件下自回归生成</text>
+</g>
+<g data-diagram-box="true">
+<rect x="650" y="501" width="414" height="64" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="857.0" y="527.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">任务提示 Token</text>
+<text x="857.0" y="551.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">选择文本 / 表格 / 公式任务</text>
+</g>
+<path d="M306 440 L360 440" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M590 440 L620 440 L620 419 L647 419" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M857 501 L857 463" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M942 237 L942 298 L181 298 L181 389" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<g data-diagram-box="true">
+<rect x="56.0" y="651" width="317.3333333333333" height="82" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="214.66666666666666" y="686.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">元素识别结果</text>
+<text x="214.66666666666666" y="710.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">文字 / 表格结构 / LaTeX</text>
+</g>
+<g data-diagram-box="true">
+<rect x="401.3333333333333" y="651" width="317.3333333333333" height="82" rx="10" fill="#edf3e9" stroke="#bfd1bd" stroke-width="1.5"/>
+<text x="560.0" y="686.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">解析流水线组装</text>
+<text x="560.0" y="710.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">阅读顺序 / 跨页关系</text>
+</g>
+<path d="M373.3333333333333 692.0 L398.3333333333333 692.0" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<g data-diagram-box="true">
+<rect x="746.6666666666666" y="651" width="317.3333333333333" height="82" rx="10" fill="#fff4db" stroke="#dfc78d" stroke-width="1.5"/>
+<text x="905.3333333333333" y="686.0" font-size="19" text-anchor="middle" fill="#24352d" font-weight="700">结构化文档</text>
+<text x="905.3333333333333" y="710.0" font-size="15" text-anchor="middle" fill="#586b60" font-weight="400">Markdown / JSON</text>
+</g>
+<path d="M718.6666666666666 692.0 L743.6666666666666 692.0" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M1064 419 L1101 419 L1101 629 L216 629 L216 648" fill="none" stroke="#286447" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="36" y="785" font-size="15" text-anchor="start" fill="#64716a" font-weight="400">1.6 延续 1.5 核心架构，主要更新数据与后训练；整个解析系统仍包含定位和后处理。</text>
+</g>
+</svg>

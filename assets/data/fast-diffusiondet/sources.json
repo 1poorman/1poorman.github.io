@@ -1,0 +1,62 @@
+{
+  "repository": "https://github.com/1poorman/fast-diffusiondet",
+  "source_head": "7ea0f7c94a8f2a798858632823ad6d1905cd5d80",
+  "accessed": "2026-10-17",
+  "note": "Copied without modification from the local project. Figures were uncommitted at access time; source_head identifies the code and experiment history, not the uncommitted figure files. No training, model inference or latency measurement was performed for this article.",
+  "figure_documentation": [
+    "results/figures/v3_model_architecture/README.md",
+    "results/figures/v3_model_improvements/README.md"
+  ],
+  "assets": [
+    {
+      "source": "results/figures/v3_model_architecture/09_diffusion_mechanism.svg",
+      "asset": "/assets/img/fast-diffusiondet/09_diffusion_mechanism.svg",
+      "sha256": "5c900b5f5b5f3fb1ad571d86e07499db01aafde88b3163e4965d01b9aa6159ad"
+    },
+    {
+      "source": "results/figures/v3_model_architecture/10_new_model_architecture.svg",
+      "asset": "/assets/img/fast-diffusiondet/10_new_model_architecture.svg",
+      "sha256": "683b0396a78a34629dcb57856b8cb9e3ef3a65122a766771a4cb6751267bdf62"
+    },
+    {
+      "source": "results/figures/v3_model_improvements/02_roi_dispatch.svg",
+      "asset": "/assets/img/fast-diffusiondet/02_roi_dispatch.svg",
+      "sha256": "88b61d34b0ba86751fb1a9ffdb2513ddbac7e19a47df564ca448927d087087c5"
+    },
+    {
+      "source": "results/figures/v3_model_improvements/03_sdd_accuracy_latency.svg",
+      "asset": "/assets/img/fast-diffusiondet/03_sdd_accuracy_latency.svg",
+      "sha256": "b7ff77d0294968873db2852135d453965e81c6499fef9821972687fd054ffba5"
+    },
+    {
+      "source": "results/figures/v3_model_improvements/03_sdd_accuracy_latency.png",
+      "asset": "/assets/img/fast-diffusiondet/03_sdd_accuracy_latency.png",
+      "sha256": "5f2fc42936e05a400f51c8671ada4a28792f7bacdd5e95103ebf65a6d87be557"
+    },
+    {
+      "source": "results/figures/v3_model_improvements/05_training_seed_tradeoff.svg",
+      "asset": "/assets/img/fast-diffusiondet/05_training_seed_tradeoff.svg",
+      "sha256": "4a3dbed996d479057073495bd30f16edef816a2f4d2bbc419bec4c9d4477b6d9"
+    },
+    {
+      "source": "results/figures/v3_model_improvements/06_detection_examples.png",
+      "asset": "/assets/img/fast-diffusiondet/06_detection_examples.png",
+      "sha256": "8009b10e1aeb705d79292890004d9f29868be557e404a77e78ff98770f557c31"
+    },
+    {
+      "source": "results/raw/v3_joint_summary.csv",
+      "asset": "/assets/data/fast-diffusiondet/v3_joint_summary.csv",
+      "sha256": "6f04ecfd61978e126fb3df215b05b88bc2ba3ad9db26810834d05e4576419cc6"
+    },
+    {
+      "source": "results/raw/v3_joint_paired.csv",
+      "asset": "/assets/data/fast-diffusiondet/v3_joint_paired.csv",
+      "sha256": "f7a66cd3eb38e33048054439d4b51d3872b112eabcb42d2fdd8290bd8befb4c1"
+    },
+    {
+      "source": "results/raw/v3_wheat_roi_summary.csv",
+      "asset": "/assets/data/fast-diffusiondet/v3_wheat_roi_summary.csv",
+      "sha256": "41cd0208728109b2ec8231f5965cf0a2b20627a5b94c4f7465e56c2737503739"
+    }
+  ]
+}

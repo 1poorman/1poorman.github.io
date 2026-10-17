@@ -1,0 +1,85 @@
+{
+  "repository": "https://github.com/1poorman/Agent_MFF_Early_Warning",
+  "source_head": "960a2701b082b872c185f648d0460565fcd89b05",
+  "accessed": "2026-10-17",
+  "note": "Read-only review of existing code and experiments; no new training or evaluation. README had local uncommitted edits. The screenshot uses simulation readings and preset messages; it does not document a live industrial incident.",
+  "source_files": [
+    {
+      "path": "README.md",
+      "sha256": "2e88d679fdce979aa242824f1c6255bc0a1aafdeabf0d61efe9aab5a8ac19d59"
+    },
+    {
+      "path": "design/L2_MODEL_BENCHMARK.md",
+      "sha256": "8e7e1fe13be5dfb67a1aa39157ccc2454c9722b3abcfc63a120b958deba3b8db"
+    },
+    {
+      "path": "design/SFT_RL_COMPARISON.md",
+      "sha256": "af4fc02d4ebfaa5506db55abd9692a1a6d1dacc0ed4acfb7eb0a07986f742c95"
+    },
+    {
+      "path": "design/HARD_FAULT_DATASET.md",
+      "sha256": "3c1ec37cdb2e367da8473c4f2dab60c08be18e6698c934f08c636a08bd32e545"
+    },
+    {
+      "path": "design/HARD_POSTTRAINING_COMPARISON.md",
+      "sha256": "d09c25c9ee95cbafdf165a33855bae1e966ce8876e55f440730ca4098d5a5027"
+    },
+    {
+      "path": "reasoning/confidence.py",
+      "sha256": "69eb8425b7776cbd62df76218965f1a74c7f8406e22f8a5b6774fea8236971d1"
+    },
+    {
+      "path": "reasoning/root_cause.py",
+      "sha256": "49815dbd70b6515935e60c465f0243ca21da70eda94d63da00bd6349771e9c6e"
+    },
+    {
+      "path": "reasoning/anti_hallucination.py",
+      "sha256": "829ecfcdd740dc10dee19b71c7c75cac317fb329e1f91933db753995ab10313c"
+    },
+    {
+      "path": "server/agents.py",
+      "sha256": "1ad7b153da5a1ee2d458ed663044c76ca32040121f1f88b9df88b21dead679e5"
+    },
+    {
+      "path": "action/feedback.py",
+      "sha256": "cbf8a239349739d3df56f65e771af6092d6f53460b32b17c88221f78d8a26ee2"
+    },
+    {
+      "path": "action/notify.py",
+      "sha256": "1dab78955d96506de50d397cdbd9e84dacbad48b8dbbe36afe04841434b68a72"
+    },
+    {
+      "path": "logs/hard_analysis_20261009/analysis.json",
+      "sha256": "1cbd3b6a5297afee56aa6ec930cce7f52278a8f7bffafcbc13c11d4b89a95101"
+    },
+    {
+      "path": "assert/demo/system-overview.png",
+      "sha256": "19f771eefdca7ef79ea86b5dd0269c361fbc2ecb76d58cdb07f262d360305c61"
+    }
+  ],
+  "assets": [
+    {
+      "asset": "/assets/img/mff-early-warning/system-overview.png",
+      "source": "assert/demo/system-overview.png",
+      "transformation": "copied unchanged",
+      "sha256": "19f771eefdca7ef79ea86b5dd0269c361fbc2ecb76d58cdb07f262d360305c61"
+    },
+    {
+      "asset": "/assets/img/mff-early-warning/diagnosis-pipeline.svg",
+      "source": [
+        "server/agents.py",
+        "reasoning/confidence.py",
+        "action/feedback.py",
+        "action/notify.py"
+      ],
+      "transformation": "editorial diagram of module responsibilities and analysis layers",
+      "sha256": "346858609a6b3ce014e48cee347daf5c248f798edfb65d9a398fe5b6353ae798"
+    },
+    {
+      "asset": "/assets/data/mff-early-warning/hard-posttraining.csv",
+      "source": "logs/hard_analysis_20261009/analysis.json",
+      "transformation": "selected metrics multiplied by 100; means of three inference runs for one training seed; confidence intervals use 134 episode clusters, 10000 paired bootstrap resamples, seed 42",
+      "sha256": "e893edbc638427edf0e3759d5e70ee00faa9532900266d361566cbef71fdff20"
+    }
+  ]
+}

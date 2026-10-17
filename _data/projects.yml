@@ -8,6 +8,7 @@
   topics: [time-series, agents]
   icon: waveform
   related_posts:
+    - _posts/2026-10-17-mff-early-warning-agent.md
     - _posts/2026-09-23-timeseries-anomaly-model-benchmark.md
     - _posts/2026-06-25-chronos-2-learning.md
 - id: photo-sorting
